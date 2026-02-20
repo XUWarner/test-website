@@ -1,35 +1,68 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>My First Server</title>
-  <style>/*CSS样式写在这里*/
-    body{
-      background:#187006;
-      font-family:Arial,sans-serif;}
-    h1{
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
-	padding:40px;
-        color:#FF9999;
-        text-align: center;}
-    a {
-	color: #38fdff;
-	text-decoration:none;
-	font-weight:normal;
-      }
-  </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>XUWarner 许莞儿 | Agritech Notes</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <h1>Hello,this is my server!<h1>
-  <p>Deployed on Tencent Cloud Ubuntu + Nginx.</p>
-<a href="https://boardmix.cn">点我进入boardmix</a>
-<br>
-<a href="pages/about.html">about this project</a>
-<img src="https://img95.699pic.com/photo/60016/7538.jpg_wh860.jpg" alt="你看到稻草图片了没">
-<ul>
-  <li>这是一个选项一</li>
-  <li>选二</li>
-  <li>还能选三</li>
-</ul>
+  <div class="container">
+
+    <div class="nav">
+      <div class="brand">XUWarner 许莞儿</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="/notes/vertical_farming_system.html">Notes</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <span class="badge">Vertical Agriculture · Agritech · keep learning English</span>
+      <h1>Learning by building.</h1>
+      <p class="small">
+        I document what I learn about vertical farming and agritech, and present it in a simple website.
+        <br/>我用“边学边做”的方式学习垂直农业与农业科技，并用一个简单网站展示我的笔记与项目。
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Notes · 学习笔记</h2>
+        <ul class="list">
+          <li><a href="/var/www/html/notes/vertical_farming_system.html">What is Vertical Farming?（垂直农业是什么？）</a></li>
+          <li><a href="/var/www/html/notes/singapore-why-vertical-ag.html">Why Singapore needs it?（新加坡为什么需要发展垂直农业？）</a></li>
+        </ul>
+      </div>
+
+      <div class="card" id="projects">
+        <h2>Projects · 项目</h2>
+        <ul class="list">
+          <li><a href="/var/www/html/notes/first-website.html">My first static website (HTML) · 我的第一个静态网站</a></li>
+          <li><a href="/var/www/html/notes/first-website.html">Portfolio site · 作品集网站</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" id="about" style="margin-top:14px;">
+      <h2>About · 关于我</h2>
+      <p class="small">
+        I’m preparing for opportunities in agritech / vertical farming.
+        I value clarity, fast learning, and practical outputs.
+        I’m willing to accept any challenges in my career.
+        <br/>我在为农业科技/垂直农业相关机会做准备，重视清晰表达、快速学习与可交付成果。乐于接受职业规划路径上的任何挑战。
+      </p>
+    </div>
+
+    <div class="footer">
+      © <span id="y"></span> XUWarner · Built with HTML/CSS
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
