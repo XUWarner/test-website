@@ -1,68 +1,131 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>XUWarner 许莞儿 | Agritech Notes</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XUWanner / 许莞儿 | Home</title>
+  <meta name="description" content="A bilingual hub for my projects and learning notes. / 我的项目与学习笔记导航页（中英双语）。" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="container">
+  <!-- Seasonal FX Canvas (doesn't block clicks) -->
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
 
-    <div class="nav">
-      <div class="brand">XUWarner 许莞儿</div>
-      <div>
-        <a href="index.html">Home</a>
-        <a href="/notes/vertical_farming_system.html">Notes</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-      </div>
-    </div>
+<!-- Left selector panel -->
+<div class="fx-panel" aria-label="Seasonal effects selector">
+  <div class="fx-panel__title">Effects / 特效</div>
+  <button class="fx-btn" data-fx="auto">Change with seasons in North Earth / 随北半球季节变化</button>
+  <button class="fx-btn" data-fx="spring">Spring Petals / 春·花瓣</button>
+  <button class="fx-btn" data-fx="summer">Summer Seeds / 夏·蒲公英</button>
+  <button class="fx-btn" data-fx="autumn">Autumn Leaves / 秋·枫叶</button>
+  <button class="fx-btn" data-fx="winter">Winter Snow / 冬·雪花</button>
+  <button class="fx-btn" data-fx="none">None / 关闭</button>
+</div>
 
-    <div class="hero">
-      <span class="badge">Vertical Agriculture · Agritech · keep learning English</span>
-      <h1>Learning by building.</h1>
-      <p class="small">
-        I document what I learn about vertical farming and agritech, and present it in a simple website.
-        <br/>我用“边学边做”的方式学习垂直农业与农业科技，并用一个简单网站展示我的笔记与项目。
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link is-active" href="index.html">Home</a>
+      <a class="nav__link" href="projects/project.html">Projects</a>
+      <a class="nav__link" href="notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">XUWanner  许莞儿</h1>
+      <p class="hero__subtitle">
+        <span class="en">A clean hub for my projects and learning notes.</span>
+        <span class="sep">·</span>
+        <span class="zh">我的项目与学习笔记汇总入口（中英双语）。</span>
       </p>
-    </div>
+    </section>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Notes · 学习笔记</h2>
-        <ul class="list">
-          <li><a href="/var/www/html/notes/vertical_farming_system.html">What is Vertical Farming?（垂直农业是什么？）</a></li>
-          <li><a href="/var/www/html/notes/singapore-why-vertical-ag.html">Why Singapore needs it?（新加坡为什么需要发展垂直农业？）</a></li>
-        </ul>
+    <section class="card" aria-label="Intro card">
+      <div class="card__left">
+        <h2 class="card__title">About</h2>
+        <p class="card__p">
+          <span class="en">
+            I’m rebuilding my English fluency as working language while learning fast and documenting what I build.
+            This site is a simple map: where I’ve been, what I’m doing, and what’s next.
+          </span>
+          <br />
+          <span class="zh">
+            我正在练习将英语作为工作语言，同时保持高频学习与记录。这个网站是我的“导航地图”：
+            我做过什么、在学什么、下一步要做什么。
+          </span>
+        </p>
+
+        <div class="mini">
+          <div class="mini__item">
+            <div class="mini__k">Focus</div>
+            <div class="mini__v">
+              <span class="en">Web building · Vertical farming · AI tools</span>
+              <span class="zh">网站搭建 · 垂直农业 · AI工具</span>
+            </div>
+          </div>
+          <div class="mini__item">
+            <div class="mini__k">Style</div>
+            <div class="mini__v">
+              <span class="en">Simple, structured, continuously improving.</span>
+              <span class="zh">简洁、结构化、持续迭代。</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="card" id="projects">
-        <h2>Projects · 项目</h2>
-        <ul class="list">
-          <li><a href="/var/www/html/notes/first-website.html">My first static website (HTML) · 我的第一个静态网站</a></li>
-          <li><a href="/var/www/html/notes/first-website.html">Portfolio site · 作品集网站</a></li>
-        </ul>
-      </div>
-    </div>
+      <div class="card__right">
+        <h2 class="card__title">Quick Links</h2>
+        <div class="btns">
+          <a class="btn" href="projects/project.html">
+            <span class="btn__t">Projects</span>
+            <span class="btn__s">能力与项目</span>
+          </a>
+          <a class="btn" href="notes/notes.html">
+            <span class="btn__t">Notes</span>
+            <span class="btn__s">学习笔记</span>
+          </a>
+          <!-- Optional: add later
+          <a class="btn btn--ghost" href="https://github.com/YourName" target="_blank" rel="noreferrer">
+            <span class="btn__t">GitHub</span>
+            <span class="btn__s">代码仓库</span>
+          </a>
+          -->
+        </div>
 
-    <div class="card" id="about" style="margin-top:14px;">
-      <h2>About · 关于我</h2>
-      <p class="small">
-        I’m preparing for opportunities in agritech / vertical farming.
-        I value clarity, fast learning, and practical outputs.
-        I’m willing to accept any challenges in my career.
-        <br/>我在为农业科技/垂直农业相关机会做准备，重视清晰表达、快速学习与可交付成果。乐于接受职业规划路径上的任何挑战。
+        <div class="hint">
+          <span class="en">Tip: I keep things minimal first, then iterate.</span>
+          <span class="zh">提示：先做一个清爽可用版，再逐步优化。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes" aria-label="Notes topics">
+      <h2 class="section-title">Notes Topics / 笔记主题</h2>
+
+      <div class="chips" role="list">
+        <span class="chip" role="listitem">Vertical Farming</span>
+        <span class="chip" role="listitem">Sensors</span>
+        <span class="chip" role="listitem">IoT</span>
+        <span class="chip" role="listitem">Greenhouse</span>
+        <span class="chip" role="listitem">Web Dev</span>
+        <span class="chip" role="listitem">AI Workflows</span>
+        <span class="chip" role="listitem">Operations</span>
+      </div>
+
+      <p class="notes__p">
+        <span class="en">Links will appear as I publish notes.</span>
+        <span class="sep">·</span>
+        <span class="zh">我写好笔记后会逐步把链接补上。</span>
       </p>
-    </div>
+    </section>
 
-    <div class="footer">
-      © <span id="y"></span> XUWarner · Built with HTML/CSS
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+  <script src="fx.js"></script>
 </body>
 </html>
