@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Professional Vocabulary / 专业词汇收集 | XUWanner 许莞儿</title>
-  <meta name="description" content="Collection of professional vocabulary in vertical farming and IoT. / 垂直农业与物联网专业词汇收集。" />
+  <meta name="description" content="Collection of professional vocabulary in vertical farming and IoT. Use Ctrl + F to look up words. / 垂直农业与物联网专业词汇收集。按 Ctrl + F 查询单词。" />
+
   <link rel="stylesheet" href="style.css" />
   <script src="effects-manager.js"></script>
 </head>
@@ -36,6 +37,12 @@
 
     <section class="card" style="margin-top: 10px;">
       <h2 class="card__title">专业词汇收集</h2>
+      <p class="card__p" style="margin-top: 8px; margin-bottom: 4px;">
+        <span class="en">💡 Tip: Press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for specific terms</span>
+      </p>
+      <p class="card__p" style="margin-top: 0; margin-bottom: 16px;">
+        <span class="zh">💡 提示：按 <kbd>Ctrl</kbd> + <kbd>F</kbd> 快速查询词汇</span>
+      </p>
       <p class="card__p"><span class="en">Last updated:</span> <span class="zh">更新：</span> 2026-02-22</p>
   
 
@@ -579,6 +586,27 @@
       color: var(--muted);
       line-height: 1.5;
       letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    /* 键盘按键样式 */
+    kbd {
+      display: inline-block;
+      padding: 3px 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: rgba(15, 42, 30, 0.85);
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(245, 245, 245, 0.9) 100%);
+      border: 1px solid rgba(15, 42, 30, 0.15);
+      border-radius: 4px;
+      box-shadow: 
+        0 1px 2px rgba(12, 32, 22, 0.08),
+        inset 0 -1px 0 rgba(15, 42, 30, 0.1);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
       white-space: nowrap;
     }
   </style>

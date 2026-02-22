@@ -53,14 +53,144 @@
     </div>
 
     <!-- 专业词汇收集 - 特殊按钮 -->
-    <div style="margin-top: 48px; display: flex; justify-content: center;">
+    <div style="margin-top: 60px; display: flex; justify-content: center;">
       <a class="vocab-special-btn" href="../vocabulary.html">
-        <span class="vocab-special-btn__icon">⚝</span>
-        <span class="vocab-special-btn__text">专业词汇收集</span>
-        <span class="vocab-special-btn__subtitle">Professional Vocabulary</span>
+        <span class="vocab-special-btn__badge">Vocabulary</span>
+        <span class="vocab-special-btn__title">专业词汇收集</span>
+        <span class="vocab-special-btn__subtitle">Professional Terminology Collection</span>
+        <span class="vocab-special-btn__arrow">→</span>
       </a>
     </div>
   </main>
+
+  <style>
+    /* 专业词汇收集按钮 - 重新设计 */
+    .vocab-special-btn {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 48px;
+      min-width: 320px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(245, 252, 250, 0.92) 100%);
+      border: 2px solid rgba(15, 42, 30, 0.12);
+      box-shadow: 
+        0 8px 32px rgba(12, 32, 22, 0.08),
+        0 2px 8px rgba(12, 32, 22, 0.04);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .vocab-special-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(15, 42, 30, 0.03), 
+        transparent);
+      transition: left 0.5s ease;
+    }
+
+    .vocab-special-btn:hover::before {
+      left: 100%;
+    }
+
+    .vocab-special-btn:hover {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(240, 250, 245, 0.98) 100%);
+      border-color: rgba(15, 42, 30, 0.24);
+      transform: translateY(-4px);
+      box-shadow: 
+        0 16px 48px rgba(12, 32, 22, 0.12),
+        0 4px 16px rgba(12, 32, 22, 0.08);
+    }
+
+    .vocab-special-btn__badge {
+      display: inline-block;
+      padding: 4px 12px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(15, 42, 30, 0.65);
+      background: rgba(15, 42, 30, 0.06);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .vocab-special-btn:hover .vocab-special-btn__badge {
+      background: rgba(15, 42, 30, 0.10);
+      color: rgba(15, 42, 30, 0.85);
+    }
+
+    .vocab-special-btn__title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .vocab-special-btn:hover .vocab-special-btn__title {
+      color: rgba(15, 42, 30, 1);
+    }
+
+    .vocab-special-btn__subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .vocab-special-btn:hover .vocab-special-btn__subtitle {
+      color: rgba(15, 42, 30, 0.75);
+    }
+
+    .vocab-special-btn__arrow {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: rgba(15, 42, 30, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .vocab-special-btn:hover .vocab-special-btn__arrow {
+      right: 20px;
+      color: rgba(15, 42, 30, 0.6);
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .vocab-special-btn {
+        min-width: 280px;
+        padding: 28px 40px;
+      }
+
+      .vocab-special-btn__title {
+        font-size: 20px;
+      }
+
+      .vocab-special-btn__arrow {
+        right: 20px;
+        font-size: 20px;
+      }
+    }
+  </style>
 
   <script src="../fx-optimized.js"></script>
 </body>
