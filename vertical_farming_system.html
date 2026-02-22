@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Smart Vertical Farming System | 智慧垂直农业系统</title>
   <link rel="stylesheet" href="style.css"/>
+  <script src="effects-manager.js"></script>
 </head>
 
 <body>
@@ -195,7 +196,7 @@
 
     paintFogFull(); // reset fog
   }
-  window.addEventListener("resize", resize, { passive:true });
+  Effects.on(window, "resize", resize, { passive:true });
 
   // --- Create fog texture (grain) ---
   let grainCanvas = document.createElement("canvas");
@@ -408,8 +409,8 @@
     if (Math.random() < 0.8) spawnDroplet(clientX, clientY);
   }
 
-  window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive:true });
-  window.addEventListener("touchmove", (e) => {
+  Effects.on(window, "mousemove", (e) => onMove(e.clientX, e.clientY), { passive:true });
+  Effects.on(window, "touchmove", (e) => {
     const t = e.touches && e.touches[0];
     if (!t) return;
     onMove(t.clientX, t.clientY);
@@ -417,6 +418,8 @@
 
   // ============ Animation loop ============
   let last = performance.now();
+  let animationId = null;
+  
   function tick(now){
     const dt = Math.min(0.033, (now-last)/1000);
     last = now;
@@ -424,12 +427,23 @@
     restoreFogStep(dt);
     drawDroplets(dt);
 
-    requestAnimationFrame(tick);
+    animationId = Effects.raf(tick);
   }
 
   resize();
   paintFogFull();
-  requestAnimationFrame(tick);
+  animationId = Effects.raf(tick);
+  
+  // 添加清理函数
+  Effects.addCleanup(() => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    droplets = [];
+    fctx.clearRect(0, 0, W, H);
+    dctx.clearRect(0, 0, W, H);
+  });
 })();
 </script>
 
