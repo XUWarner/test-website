@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI E-commerce Live Stream Optimization | AI电商直播互动策略优化</title>
+  <meta name="description" content="Optimizing live-stream interaction strategy using A/B testing and AI-generated content to improve engagement and conversion rates."/>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../effects-manager.js"></script>
+</head>
+
+<body>
+  <!-- Fog layer -->
+  <canvas id="fog-canvas" aria-hidden="true"></canvas>
+  <canvas id="droplet-canvas" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="../index.html">Home</a>
+      <a class="nav__link" href="project.html">Projects</a>
+      <a class="nav__link" href="../notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">AI E-commerce Live Stream Optimization</h1>
+      <p class="hero__subtitle">
+        <span class="en">Using A/B testing and AI to improve live-stream engagement.</span>
+        <span class="sep">·</span>
+        <span class="zh">通过A/B测试与AI优化直播互动策略。</span>
+      </p>
+    </section>
+
+    <section class="card" style="margin-top: 10px; font-size: calc(1em + 2px);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 14px; flex-wrap: wrap;">
+        <h2 class="card__title" style="font-size: 20px; margin: 0; flex: 1; min-width: 280px;">AI电商直播互动策略优化</h2>
+        <a href="AI-scripts.html" class="scripts-link" style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 12px; background: rgba(15,42,30,0.08); border: 1px solid rgba(15,42,30,0.15); text-decoration: none; transition: all 0.2s ease; white-space: nowrap; position: relative; overflow: hidden; min-width: 220px;">
+          <span style="font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.4; letter-spacing: 0.4px; position: relative; z-index: 1;">多场景对比话术及评价指标</span>
+          <span style="font-size: 13px; color: var(--muted); line-height: 1.4; margin-top: 3px; letter-spacing: 0.2px; position: relative; z-index: 1;">Multi-scenario Scripts & Metrics</span>
+        </a>
+      </div>
+      <p class="card__p" style="margin-bottom: 24px;"><span class="en">Last updated:</span> <span class="zh">更新：</span> 2026-02-22</p>
+
+      <!-- Project Goal -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">Project Goal / 项目目标</h3>
+      <p class="card__p" style="margin-bottom: 20px;">
+        <span class="en">
+          Optimize live-stream interaction strategy to improve engagement and conversion.
+        </span>
+        <br/>
+        <span class="zh">优化直播互动话术以提升用户互动率与转化率。</span>
+      </p>
+
+      <!-- STEP 1 -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">STEP 1: Problem Definition / 问题定义</h3>
+      <p class="card__p" style="margin-bottom: 20px;">
+        <span class="en">
+          <strong>Sample problem:</strong> Live streams often have low interaction rate at the beginning, which leads to low conversion. We want to test whether different opening interaction strategies can improve user engagement.
+        </span>
+        <br/>
+        <span class="zh">
+          <strong>例：</strong>直播开始时互动率低导致转化率低，通过设计对比实验测试不同的开场白策略，选出更好的互动话术。
+        </span>
+      </p>
+
+      <!-- STEP 2 -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">STEP 2: Test Design / 实验设计</h3>
+      
+      <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(15,42,30,0.08);">
+        <p class="card__p" style="margin-bottom: 12px; font-weight: 600;">
+          <span class="en">Test Design: A/B Test</span>
+          <span class="sep">·</span>
+          <span class="zh">实验设计：A/B对照试验</span>
+        </p>
+        <p class="card__p" style="margin-bottom: 16px;">
+          <span class="en">Test Scenario: Live stream opening first 60 seconds</span>
+          <br/>
+          <span class="zh">测试场景：直播开始的前六十秒</span>
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px;">
+        <!-- Version A -->
+        <div style="background: rgba(255,255,255,0.65); padding: 18px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 12px; font-size: 16px; color: var(--text);">
+            <span class="en">Version A: Direct Promotion</span>
+            <br/>
+            <span class="zh" style="font-size: 15px; color: var(--muted);">方案A：开场优惠</span>
+          </h4>
+          <div style="background: rgba(240,248,244,0.8); padding: 12px; border-radius: 8px; border-left: 3px solid rgba(15,42,30,0.25);">
+            <p style="margin: 0 0 8px; font-size: 14px; line-height: 1.7; color: var(--text);">
+              "Welcome! Limited-time 20% off, click to get coupon now!"
+            </p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: var(--muted);">
+              "欢迎！限时八折，点击得优惠券！"
+            </p>
+          </div>
+        </div>
+
+        <!-- Version B -->
+        <div style="background: rgba(255,255,255,0.65); padding: 18px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 12px; font-size: 16px; color: var(--text);">
+            <span class="en">Version B: Interactive Trigger</span>
+            <br/>
+            <span class="zh" style="font-size: 15px; color: var(--muted);">方案B：互动后给优惠</span>
+          </h4>
+          <div style="background: rgba(240,248,244,0.8); padding: 12px; border-radius: 8px; border-left: 3px solid rgba(15,42,30,0.25);">
+            <p style="margin: 0 0 8px; font-size: 14px; line-height: 1.7; color: var(--text);">
+              "Type '1' in the chat to unlock your surprise coupon!"
+            </p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: var(--muted);">
+              "评论区扣1得大额优惠券！"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 24px; border: 1px solid rgba(15,42,30,0.08);">
+        <h4 style="margin: 0 0 14px; font-size: 16px;">
+          <span class="en">Metrics</span>
+          <span class="sep">·</span>
+          <span class="zh">评估指标</span>
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">
+            <span class="en"><strong>Engagement Rate:</strong> Number of speakers/interactions ÷ viewers</span>
+            <br/>
+            <span class="zh">参与率：发言/互动人数÷观看人数</span>
+          </li>
+          <li style="margin-bottom: 8px;">
+            <span class="en"><strong>CTR:</strong> Click-Through Rate</span>
+            <br/>
+            <span class="zh">点击优惠链接比例</span>
+          </li>
+          <li>
+            <span class="en"><strong>Conversion Rate</strong></span>
+            <br/>
+            <span class="zh">下单转化率</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- STEP 3 -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">STEP 3: Use AIGC & LLM / 用AI生成内容</h3>
+      <p class="card__p" style="margin-bottom: 20px;">
+        <span class="en">
+          Use LLM to generate multiple versions of live interaction scripts and structured dialogue flows for different user scenarios.
+        </span>
+        <br/>
+        <span class="zh">使用语言大模型生成多份实时交互脚本并为不同用户场景提供结构化对话流程。</span>
+      </p>
+
+      <!-- STEP 4 -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">STEP 4: Simulated Data / 模拟数据</h3>
+      
+      <div style="overflow-x: auto; margin-bottom: 20px;">
+        <table style="width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.65); border-radius: 12px; overflow: hidden;">
+          <thead>
+            <tr style="background: rgba(15,42,30,0.08);">
+              <th style="padding: 14px; text-align: left; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Version</th>
+              <th style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Viewers</th>
+              <th style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Engaged Users</th>
+              <th style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Engagement Rate</th>
+              <th style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Orders</th>
+              <th style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; border-bottom: 2px solid rgba(15,42,30,0.12);">Conversion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(15,42,30,0.08);">
+              <td style="padding: 14px; font-size: 14px; font-weight: 600;">A</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">1000</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">80</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">8%</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">20</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">2.0%</td>
+            </tr>
+            <tr style="background: rgba(240,255,245,0.5);">
+              <td style="padding: 14px; font-size: 14px; font-weight: 600;">B</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px;">1000</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; color: rgba(15,42,30,0.9);">140</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; color: rgba(15,42,30,0.9);">14%</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; color: rgba(15,42,30,0.9);">35</td>
+              <td style="padding: 14px; text-align: center; font-size: 14px; font-weight: 600; color: rgba(15,42,30,0.9);">3.5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background: rgba(240,255,245,0.6); padding: 16px; border-radius: 12px; border-left: 4px solid rgba(15,42,30,0.3); margin-bottom: 24px;">
+        <p style="margin: 0; font-size: 15px; line-height: 1.8; color: var(--text);">
+          <strong>Analysis / 分析:</strong>
+          <br/>
+          <span class="en">Version B shows higher engagement and conversion, which means the interaction strategy performs better.</span>
+          <br/>
+          <span class="zh">方案B显示出更高的互动率和转化率，说明互动触发策略表现更好。</span>
+        </p>
+      </div>
+
+      <!-- STEP 5 -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">STEP 5: Iteration & Optimization / 迭代与优化</h3>
+      
+      <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(15,42,30,0.08);">
+        <h4 style="margin: 0 0 12px; font-size: 16px;">
+          <span class="en">Known Conditions</span>
+          <span class="sep">·</span>
+          <span class="zh">已知条件</span>
+        </h4>
+        <p class="card__p" style="margin-bottom: 16px;">
+          <span class="en">Keep interaction trigger strategy</span>
+          <br/>
+          <span class="zh">保持互动触发策略</span>
+        </p>
+        
+        <h4 style="margin: 0 0 12px; font-size: 16px;">
+          <span class="en">Further Test:</span>
+          <span class="sep">·</span>
+          <span class="zh">进一步测试：</span>
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">
+            <span class="en">Keyword choice ("1" vs "coupon")</span>
+            <br/>
+            <span class="zh">关键词更改（扣1 或 优惠券）</span>
+          </li>
+          <li style="margin-bottom: 8px;">
+            <span class="en">Timing of showing discounts (30s vs 60s)</span>
+            <br/>
+            <span class="zh">优惠券显示时间（30秒 或60秒）</span>
+          </li>
+          <li>
+            <span class="en">Tone (friendly vs urgency)</span>
+            <br/>
+            <span class="zh">互动语气（友好 或 急促）</span>
+          </li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a class="btn" href="project.html">
+          <span class="btn__t">Back to Projects</span>
+          <span class="btn__s">返回项目</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+
+<script>
+(() => {
+  // ============ Layer 1: Fog ============
+  const fog = document.getElementById("fog-canvas");
+  const drop = document.getElementById("droplet-canvas");
+  if (!fog || !drop) return;
+
+  const fctx = fog.getContext("2d", { alpha: true });
+  const dctx = drop.getContext("2d", { alpha: true });
+
+  let W=0, H=0, DPR=Math.min(2, window.devicePixelRatio || 1);
+
+  [fog, drop].forEach((c, i) => {
+    c.style.position = "fixed";
+    c.style.inset = "0";
+    c.style.pointerEvents = "none";
+    c.style.zIndex = (i===0) ? "0" : "0";
+  });
+
+  document.querySelectorAll(".top, .wrap").forEach(el => {
+    el.style.position = "relative";
+    el.style.zIndex = "1";
+  });
+
+  function resize(){
+    W = Math.floor(window.innerWidth);
+    H = Math.floor(window.innerHeight);
+
+    fog.width = Math.floor(W*DPR);
+    fog.height = Math.floor(H*DPR);
+    fog.style.width = W+"px";
+    fog.style.height = H+"px";
+    fctx.setTransform(DPR,0,0,DPR,0,0);
+
+    drop.width = Math.floor(W*DPR);
+    drop.height = Math.floor(H*DPR);
+    drop.style.width = W+"px";
+    drop.style.height = H+"px";
+    dctx.setTransform(DPR,0,0,DPR,0,0);
+
+    paintFogFull();
+  }
+  Effects.on(window, "resize", resize, { passive:true });
+
+  let grainCanvas = document.createElement("canvas");
+  let gctx = grainCanvas.getContext("2d", { alpha:true });
+
+  function buildGrain(){
+    const s = 260;
+    grainCanvas.width = s;
+    grainCanvas.height = s;
+    gctx.clearRect(0,0,s,s);
+
+    const img = gctx.createImageData(s, s);
+    for(let i=0;i<img.data.length;i+=4){
+      const base = 235 + Math.random()*20;
+      const speck = (Math.random() < 0.08) ? (210 + Math.random()*25) : base;
+
+      img.data[i]   = speck;
+      img.data[i+1] = speck;
+      img.data[i+2] = speck;
+
+      let a = 0;
+      if (Math.random() < 0.72) a = 18 + Math.random()*22;
+      if (Math.random() < 0.05) a = 40 + Math.random()*35;
+      img.data[i+3] = a;
+    }
+    gctx.putImageData(img,0,0);
+  }
+
+  buildGrain();
+
+  let lastMove = performance.now();
+  let targetFog = 1;
+  let fogRebuildRequested = false;
+
+  function paintFogFull(){
+    fctx.clearRect(0,0,W,H);
+
+    fctx.globalCompositeOperation = "source-over";
+    fctx.fillStyle = "rgba(255,255,255,0.86)";
+    fctx.fillRect(0,0,W,H);
+
+    for(let i=0;i<18;i++){
+      const x = Math.random()*W;
+      const y = Math.random()*H;
+      const r = 260 + Math.random()*560;
+      const grad = fctx.createRadialGradient(x,y,0,x,y,r);
+      grad.addColorStop(0, "rgba(255,255,255,0.55)");
+      grad.addColorStop(0.55, "rgba(255,255,255,0.18)");
+      grad.addColorStop(1, "rgba(255,255,255,0)");
+      fctx.fillStyle = grad;
+      fctx.beginPath();
+      fctx.arc(x,y,r,0,Math.PI*2);
+      fctx.fill();
+    }
+
+    fctx.globalAlpha = 0.85;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    const v = fctx.createRadialGradient(W*0.5,H*0.5, Math.min(W,H)*0.2, W*0.5,H*0.5, Math.max(W,H)*0.75);
+    v.addColorStop(0, "rgba(255,255,255,0)");
+    v.addColorStop(1, "rgba(255,255,255,0.18)");
+    fctx.fillStyle = v;
+    fctx.fillRect(0,0,W,H);
+  }
+
+  function wipeFog(x,y){
+    fctx.save();
+    fctx.globalCompositeOperation = "destination-out";
+
+    const rBig = 150;
+    let g1 = fctx.createRadialGradient(x,y,0,x,y,rBig);
+    g1.addColorStop(0, "rgba(0,0,0,0.55)");
+    g1.addColorStop(0.6, "rgba(0,0,0,0.22)");
+    g1.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g1;
+    fctx.beginPath();
+    fctx.arc(x,y,rBig,0,Math.PI*2);
+    fctx.fill();
+
+    const rCore = 70;
+    let g2 = fctx.createRadialGradient(x,y,0,x,y,rCore);
+    g2.addColorStop(0, "rgba(0,0,0,1)");
+    g2.addColorStop(0.55, "rgba(0,0,0,0.98)");
+    g2.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g2;
+    fctx.beginPath();
+    fctx.arc(x,y,rCore,0,Math.PI*2);
+    fctx.fill();
+
+    fctx.globalAlpha = 0.35;
+    fctx.beginPath();
+    fctx.ellipse(x, y, 120, 36, 0, 0, Math.PI*2);
+    fctx.fill();
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+  }
+
+  function restoreFogStep(dt){
+    const idle = (performance.now() - lastMove);
+    if (idle < 3000) return;
+
+    fctx.save();
+    fctx.globalCompositeOperation = "source-over";
+
+    fctx.fillStyle = "rgba(255,255,255,0.010)";
+    fctx.fillRect(0,0,W,H);
+
+    fctx.globalAlpha = 0.04;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+
+    if (!fogRebuildRequested && idle > 25000){
+      fogRebuildRequested = true;
+      setTimeout(() => {
+        paintFogFull();
+        fogRebuildRequested = false;
+      }, 50);
+    }
+  }
+
+  let droplets = [];
+  function spawnDroplet(x, y){
+    droplets.push({
+      x: x + (Math.random()*26-13),
+      y: y + (Math.random()*26-13),
+      r: 1.8 + Math.random()*3.6,
+      vy: 28 + Math.random()*55,
+      life: 3.5 + Math.random()*4.2,
+      wobble: 0.6 + Math.random()*1.2,
+      t: 0
+    });
+    if (droplets.length > 120) droplets.splice(0, droplets.length - 120);
+  }
+
+  function drawDroplets(dt){
+    dctx.clearRect(0,0,W,H);
+    dctx.save();
+
+    for (let i=0;i<droplets.length;i++){
+      const p = droplets[i];
+      p.t += dt;
+
+      p.x += Math.sin((p.t*3.2) + p.x*0.01) * p.wobble * 0.18;
+      p.y += p.vy * dt;
+
+      const trailLen = 26 + p.r*10 + Math.random()*18;
+      dctx.globalAlpha = Math.max(0, 0.26 - p.t*0.035);
+      dctx.strokeStyle = "rgba(205, 235, 255, 0.95)";
+      dctx.lineWidth = Math.max(1, p.r*0.55);
+
+      dctx.beginPath();
+      dctx.moveTo(p.x, p.y - trailLen);
+      dctx.lineTo(p.x, p.y);
+      dctx.stroke();
+
+      dctx.globalAlpha = Math.max(0, 0.55 - p.t*0.06);
+      dctx.fillStyle = "rgba(240, 252, 255, 0.98)";
+      dctx.beginPath();
+      dctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      dctx.fill();
+
+      dctx.globalAlpha = Math.max(0, 0.22 - p.t*0.05);
+      dctx.fillStyle = "rgba(255,255,255,0.95)";
+      dctx.beginPath();
+      dctx.arc(p.x - p.r*0.35, p.y - p.r*0.35, Math.max(0.6, p.r*0.35), 0, Math.PI*2);
+      dctx.fill();
+    }
+
+    droplets = droplets.filter(p => p.t < p.life && p.y < H + 60);
+    dctx.restore();
+  }
+
+  function onMove(clientX, clientY){
+    lastMove = performance.now();
+    wipeFog(clientX, clientY);
+
+    if (Math.random() < 0.8) spawnDroplet(clientX, clientY);
+  }
+
+  Effects.on(window, "mousemove", (e) => onMove(e.clientX, e.clientY), { passive:true });
+  Effects.on(window, "touchmove", (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    onMove(t.clientX, t.clientY);
+  }, { passive:true });
+
+  let last = performance.now();
+  let animationId = null;
+  
+  function tick(now){
+    const dt = Math.min(0.033, (now-last)/1000);
+    last = now;
+
+    restoreFogStep(dt);
+    drawDroplets(dt);
+
+    animationId = Effects.raf(tick);
+  }
+
+  resize();
+  paintFogFull();
+  animationId = Effects.raf(tick);
+  
+  Effects.addCleanup(() => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    droplets = [];
+    fctx.clearRect(0, 0, W, H);
+    dctx.clearRect(0, 0, W, H);
+  });
+})();
+</script>
+
+<style>
+  /* 标题右侧按钮样式和增强的闪亮动画效果 */
+  .scripts-link {
+    box-shadow: 0 2px 10px rgba(12,32,22,0.10), 0 0 20px rgba(255,255,255,0.3);
+  }
+
+  /* 主光泽扫过效果 - 更明显 */
+  .scripts-link::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      transparent 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 65%,
+      transparent
+    );
+    animation: shimmer 2.5s infinite;
+  }
+
+  /* 第二层光泽 - 增加层次感 */
+  .scripts-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 70%
+    );
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) translateY(-100%) rotate(30deg);
+    }
+    100% {
+      transform: translateX(100%) translateY(100%) rotate(30deg);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .scripts-link:hover {
+    background: rgba(15,42,30,0.12) !important;
+    border-color: rgba(15,42,30,0.25) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(12,32,22,0.18), 0 0 30px rgba(255,255,255,0.4);
+  }
+
+  .scripts-link:hover::before {
+    animation: shimmer 1.2s infinite;
+  }
+
+  .scripts-link:hover::after {
+    animation: glow 1s ease-in-out infinite;
+  }
+
+  /* 增强的脉动效果 */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 2px 10px rgba(12,32,22,0.10), 0 0 20px rgba(255,255,255,0.3);
+    }
+    50% {
+      box-shadow: 0 2px 14px rgba(12,32,22,0.14), 0 0 25px rgba(255,255,255,0.5), 0 0 0 3px rgba(15,42,30,0.08);
+    }
+  }
+
+  .scripts-link {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* 确保文字在所有效果之上 */
+  .scripts-link span {
+    position: relative;
+    z-index: 2;
+  }
+</style>
+
+</body>
+</html>
