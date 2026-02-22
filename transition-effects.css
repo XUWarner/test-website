@@ -1,0 +1,92 @@
+/* transition-effects.css */
+/* 过场动画特效样式文件 */
+
+/* ========== 水波纹过场动画样式 ========== */
+#ripple-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#ripple-canvas.active {
+  opacity: 1;
+}
+
+/* ========== 箱子堆叠过场动画样式 ========== */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.transition-overlay.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.boxes-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.box {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(226, 243, 234, 0.85) 50%,
+    rgba(200, 230, 215, 0.9) 100%);
+  border: 2px solid rgba(15, 42, 30, 0.2);
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 12px rgba(12, 32, 22, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transform: scale(0) rotate(0deg);
+}
+
+/* 堆叠动画 */
+@keyframes boxStack {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* 上飘消失动画 */
+@keyframes boxFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120vh) scale(0.3);
+  }
+}
