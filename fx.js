@@ -2,6 +2,17 @@
   const canvas = document.getElementById("fx-canvas");
   if (!canvas) return;
 
+  // 特效开关：点击展开/收起面板
+  const panelToggle = document.querySelector(".js-fx-panel-toggle");
+  const panelBody = document.getElementById("fx-panel-body");
+  if (panelToggle && panelBody) {
+    panelToggle.addEventListener("click", () => {
+      const willBeOpen = panelBody.hidden;
+      panelBody.hidden = !panelBody.hidden;
+      panelToggle.setAttribute("aria-expanded", String(willBeOpen));
+    });
+  }
+
   const ctx = canvas.getContext("2d", { alpha: true });
   let W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
 
@@ -115,125 +126,315 @@
 
   // ===== Drawing shapes (no images needed) =====
   function drawPetal(p){
-    // soft pink petal
+    // 优化的花瓣 - 更自然的形状和渐变
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
     ctx.globalAlpha = p.alpha;
-    ctx.fillStyle = "rgba(255, 164, 190, 0.9)"; // gentle pink
-    ctx.beginPath();
-    // simple petal: two bezier curves
+    
     const s = p.size;
-    ctx.moveTo(0, -s*0.9);
-    ctx.bezierCurveTo(s*0.9, -s*0.4, s*0.8, s*0.8, 0, s);
-    ctx.bezierCurveTo(-s*0.8, s*0.8, -s*0.9, -s*0.4, 0, -s*0.9);
+    
+    // 添加柔和的阴影
+    ctx.shadowColor = "rgba(255, 120, 150, 0.3)";
+    ctx.shadowBlur = 8;
+    
+    // 渐变色 - 从浅粉到深粉
+    const gradient = ctx.createRadialGradient(0, -s*0.3, 0, 0, 0, s);
+    gradient.addColorStop(0, "rgba(255, 220, 230, 0.95)");
+    gradient.addColorStop(0.5, "rgba(255, 182, 205, 0.92)");
+    gradient.addColorStop(1, "rgba(255, 150, 180, 0.88)");
+    ctx.fillStyle = gradient;
+    
+    // 更自然的花瓣形状
+    ctx.beginPath();
+    ctx.moveTo(0, -s*0.95);
+    ctx.bezierCurveTo(s*0.95, -s*0.5, s*0.85, s*0.7, 0, s*0.95);
+    ctx.bezierCurveTo(-s*0.85, s*0.7, -s*0.95, -s*0.5, 0, -s*0.95);
     ctx.fill();
+    
+    // 添加花瓣纹理
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = "rgba(255, 140, 170, 0.25)";
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(0, -s*0.8);
+    ctx.quadraticCurveTo(s*0.15, 0, 0, s*0.8);
+    ctx.moveTo(0, -s*0.8);
+    ctx.quadraticCurveTo(-s*0.15, 0, 0, s*0.8);
+    ctx.stroke();
+    
     ctx.restore();
   }
 
   function drawSeed(p){
-  ctx.save();
-  ctx.translate(p.x, p.y);
-  ctx.rotate(p.rot);
-
-  // Slightly stronger alpha for visibility
-  ctx.globalAlpha = Math.min(0.55, p.alpha + 0.18);
-
-  const s = p.size;
-
-  // Soft glow to lift it off light background
-  ctx.shadowColor = "rgba(248, 213, 152, 0.55)";
-  ctx.shadowBlur = 6;
-
-  // Parachute (warm white)
-  ctx.strokeStyle = "rgba(255, 234, 140, 0.95)";
-  ctx.lineWidth = 1.2;
-
-  ctx.beginPath();
-  for (let i=0;i<6;i++){
-    const ang = (Math.PI*2/6)*i;
+    // 优化的蒲公英种子 - 更明显更细致
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = Math.min(0.85, p.alpha + 0.35);
+    
+    const s = p.size;
+    
+    // 更强的光晕
+    ctx.shadowColor = "rgba(255, 240, 180, 0.8)";
+    ctx.shadowBlur = 12;
+    
+    // 绒毛伞 - 更粗更明显的线条
+    const rays = 10;
+    for (let i = 0; i < rays; i++) {
+      const angle = (Math.PI * 2 / rays) * i;
+      const length = s * (1.4 + Math.sin(p.phase + i) * 0.2);
+      
+      // 主绒毛线
+      ctx.strokeStyle = "rgba(255, 248, 220, 0.95)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      const endX = Math.cos(angle) * length;
+      const endY = Math.sin(angle) * length;
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+      
+      // 绒毛分叉（让它更蓬松）
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 245, 210, 0.85)";
+      const forkAngle1 = angle - 0.15;
+      const forkAngle2 = angle + 0.15;
+      const forkLength = length * 0.7;
+      
+      ctx.beginPath();
+      ctx.moveTo(endX * 0.6, endY * 0.6);
+      ctx.lineTo(Math.cos(forkAngle1) * forkLength, Math.sin(forkAngle1) * forkLength);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(endX * 0.6, endY * 0.6);
+      ctx.lineTo(Math.cos(forkAngle2) * forkLength, Math.sin(forkAngle2) * forkLength);
+      ctx.stroke();
+      
+      // 绒毛末端的小球 - 更大更明显
+      ctx.shadowBlur = 6;
+      ctx.fillStyle = "rgba(255, 250, 230, 1)";
+      ctx.beginPath();
+      ctx.arc(endX, endY, 1.8, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 分叉末端的小球
+      ctx.beginPath();
+      ctx.arc(Math.cos(forkAngle1) * forkLength, Math.sin(forkAngle1) * forkLength, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(Math.cos(forkAngle2) * forkLength, Math.sin(forkAngle2) * forkLength, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    // 中心连接杆 - 更粗更明显
+    ctx.shadowBlur = 8;
+    ctx.strokeStyle = "rgba(250, 235, 200, 0.95)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(Math.cos(ang)*s*1.4, Math.sin(ang)*s*1.4);
+    ctx.lineTo(0, s * 2.8);
+    ctx.stroke();
+    
+    // 种子 - 更大更明显
+    ctx.shadowBlur = 5;
+    ctx.fillStyle = "rgba(240, 225, 195, 1)";
+    ctx.beginPath();
+    ctx.ellipse(0, s * 2.9, 2.5, 3.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // 种子高光
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "rgba(255, 245, 220, 0.6)";
+    ctx.beginPath();
+    ctx.ellipse(-0.8, s * 2.7, 1, 1.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.restore();
   }
-  ctx.stroke();
-
-  // Stem
-  ctx.shadowBlur = 0; // keep stem crisp
-  ctx.strokeStyle = "rgba(245, 232, 210, 0.75)";
-  ctx.lineWidth = 1;
-
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(0, s*2.1);
-  ctx.stroke();
-
-  // Seed dot (slightly darker tip)
-  ctx.fillStyle = "rgba(250, 240, 225, 1)";
-  ctx.beginPath();
-  ctx.arc(0, s*2.2, 1.4, 0, Math.PI*2);
-  ctx.fill();
-
-  ctx.restore();
-}
-
 
   function drawLeaf(p){
-    // small red maple-ish leaf (stylized)
+    // 优化的枫叶 - 更真实的形状和颜色
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
     ctx.globalAlpha = p.alpha;
+    
     const s = p.size;
-    ctx.fillStyle = "rgba(220, 80, 70, 0.95)";
+    
+    // 添加阴影
+    ctx.shadowColor = "rgba(180, 60, 40, 0.35)";
+    ctx.shadowBlur = 6;
+    
+    // 渐变色 - 从橙红到深红
+    const gradient = ctx.createRadialGradient(0, -s*0.3, 0, 0, 0, s);
+    gradient.addColorStop(0, "rgba(255, 140, 80, 0.95)");
+    gradient.addColorStop(0.4, "rgba(235, 90, 70, 0.93)");
+    gradient.addColorStop(1, "rgba(200, 60, 50, 0.90)");
+    ctx.fillStyle = gradient;
+    
+    // 更真实的枫叶形状（五角）
     ctx.beginPath();
     ctx.moveTo(0, -s);
-    ctx.lineTo(s*0.35, -s*0.2);
-    ctx.lineTo(s, -s*0.25);
-    ctx.lineTo(s*0.45, s*0.1);
-    ctx.lineTo(s*0.7, s*0.85);
-    ctx.lineTo(0, s*0.4);
-    ctx.lineTo(-s*0.7, s*0.85);
-    ctx.lineTo(-s*0.45, s*0.1);
-    ctx.lineTo(-s, -s*0.25);
-    ctx.lineTo(-s*0.35, -s*0.2);
+    // 右上角
+    ctx.lineTo(s*0.4, -s*0.3);
+    ctx.lineTo(s*0.95, -s*0.4);
+    ctx.lineTo(s*0.5, s*0.05);
+    // 右下角
+    ctx.lineTo(s*0.75, s*0.9);
+    ctx.lineTo(s*0.15, s*0.5);
+    // 底部
+    ctx.lineTo(0, s*0.65);
+    ctx.lineTo(-s*0.15, s*0.5);
+    // 左下角
+    ctx.lineTo(-s*0.75, s*0.9);
+    ctx.lineTo(-s*0.5, s*0.05);
+    // 左上角
+    ctx.lineTo(-s*0.95, -s*0.4);
+    ctx.lineTo(-s*0.4, -s*0.3);
     ctx.closePath();
     ctx.fill();
-    // small stem
-    ctx.strokeStyle = "rgba(120, 60, 40, 0.45)";
+    
+    // 叶脉
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = "rgba(150, 50, 40, 0.4)";
+    ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(0, s*0.35);
-    ctx.lineTo(0, s*1.15);
+    ctx.moveTo(0, -s*0.9);
+    ctx.lineTo(0, s*0.6);
+    // 分支叶脉
+    ctx.moveTo(0, -s*0.3);
+    ctx.lineTo(s*0.4, -s*0.2);
+    ctx.moveTo(0, -s*0.3);
+    ctx.lineTo(-s*0.4, -s*0.2);
+    ctx.moveTo(0, s*0.1);
+    ctx.lineTo(s*0.5, s*0.2);
+    ctx.moveTo(0, s*0.1);
+    ctx.lineTo(-s*0.5, s*0.2);
     ctx.stroke();
+    
+    // 叶柄
+    ctx.strokeStyle = "rgba(140, 70, 50, 0.6)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, s*0.6);
+    ctx.lineTo(0, s*1.2);
+    ctx.stroke();
+    
     ctx.restore();
   }
 
   function drawSnow(p){
-  ctx.save();
-  ctx.translate(p.x, p.y);
-  ctx.rotate(p.rot);
-
-  // Slightly stronger alpha for visibility
-  ctx.globalAlpha = Math.min(0.55, p.alpha + 0.16);
-
-  const s = p.size;
-
-  // Icy glow
-  ctx.shadowColor = "rgba(160, 220, 255, 0.55)";
-  ctx.shadowBlur = 7;
-
-  ctx.strokeStyle = "rgba(175, 230, 255, 0.95)"; // ice blue
-  ctx.lineWidth = 1.3;
-
-  for (let i=0;i<3;i++){
-    ctx.rotate(Math.PI/3);
+    // 优化的雪花 - 更明显更精致
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = Math.min(0.9, p.alpha + 0.4);
+    
+    const s = p.size;
+    
+    // 更强的冰晶光晕
+    ctx.shadowColor = "rgba(200, 240, 255, 0.9)";
+    ctx.shadowBlur = 14;
+    
+    // 六条主轴 - 更粗更明显
+    for (let i = 0; i < 6; i++) {
+      ctx.save();
+      ctx.rotate((Math.PI / 3) * i);
+      
+      // 主轴
+      ctx.strokeStyle = "rgba(230, 250, 255, 1)";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -s);
+      ctx.stroke();
+      
+      // 第一层分支（靠近中心）
+      ctx.lineWidth = 1.8;
+      ctx.strokeStyle = "rgba(220, 245, 255, 0.95)";
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.35);
+      ctx.lineTo(-s * 0.3, -s * 0.55);
+      ctx.moveTo(0, -s * 0.35);
+      ctx.lineTo(s * 0.3, -s * 0.55);
+      ctx.stroke();
+      
+      // 第二层分支（中间）
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.6);
+      ctx.lineTo(-s * 0.28, -s * 0.78);
+      ctx.moveTo(0, -s * 0.6);
+      ctx.lineTo(s * 0.28, -s * 0.78);
+      ctx.stroke();
+      
+      // 第三层分支（靠近末端）
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.8);
+      ctx.lineTo(-s * 0.22, -s * 0.95);
+      ctx.moveTo(0, -s * 0.8);
+      ctx.lineTo(s * 0.22, -s * 0.95);
+      ctx.stroke();
+      
+      // 分支末端的小晶体
+      ctx.fillStyle = "rgba(240, 252, 255, 1)";
+      ctx.shadowBlur = 6;
+      
+      ctx.beginPath();
+      ctx.arc(-s * 0.3, -s * 0.55, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(s * 0.3, -s * 0.55, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(-s * 0.28, -s * 0.78, 1.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(s * 0.28, -s * 0.78, 1.3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(-s * 0.22, -s * 0.95, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(s * 0.22, -s * 0.95, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 主轴末端的晶体
+      ctx.beginPath();
+      ctx.arc(0, -s, 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.restore();
+    }
+    
+    // 中心六角形 - 更大更明显
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = "rgba(245, 252, 255, 0.95)";
     ctx.beginPath();
-    ctx.moveTo(-s, 0);
-    ctx.lineTo(s, 0);
-    ctx.stroke();
+    for (let i = 0; i < 6; i++) {
+      const angle = (Math.PI / 3) * i;
+      const x = Math.cos(angle) * s * 0.25;
+      const y = Math.sin(angle) * s * 0.25;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    
+    // 中心点
+    ctx.shadowBlur = 5;
+    ctx.fillStyle = "rgba(255, 255, 255, 1)";
+    ctx.beginPath();
+    ctx.arc(0, 0, s * 0.12, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.restore();
   }
-
-  ctx.restore();
-}
 
 
   function drawBokeh(b){

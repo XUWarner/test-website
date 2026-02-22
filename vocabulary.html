@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Professional Vocabulary / 专业词汇收集 | XUWanner 许莞儿</title>
+  <meta name="description" content="Collection of professional vocabulary in vertical farming and IoT. / 垂直农业与物联网专业词汇收集。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <canvas id="dots-canvas" aria-hidden="true"></canvas>
+
+  <!-- 呼吸灯效果 -->
+  <div class="breathing-light" aria-hidden="true"></div>
+  <div class="breathing-light-outer" aria-hidden="true"></div>
+
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="index.html">Home</a>
+      <a class="nav__link" href="projects/project.html">Projects</a>
+      <a class="nav__link" href="notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">Professional Vocabulary</h1>
+      <p class="hero__subtitle">
+        <span class="en">Technical terms in vertical farming and IoT.</span>
+        <span class="sep">·</span>
+        <span class="zh">垂直农业与物联网专业词汇。</span>
+      </p>
+    </section>
+
+    <section class="card" style="margin-top: 10px;">
+      <h2 class="card__title">专业词汇收集</h2>
+      <p class="card__p"><span class="en">Last updated:</span> <span class="zh">更新：</span> 2026-02-22</p>
+  
+
+      <div style="margin-top: 20px;">
+        <div id="vocab-grid" class="vocab-grid" aria-label="Vocabulary list"></div>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <a class="btn" href="notes/notes.html">
+          <span class="btn__t">Back to Notes</span>
+          <span class="btn__s">返回笔记</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+  
+  <script>
+    // ===== 词汇数据 - 只需要在这里维护 =====
+    const vocabularyData = [
+      { en: "Vertical farming", zh: "垂直农业" },
+      { en: "Controlled Environment Agriculture (CEA)", zh: "可控农业环境" },
+      { en: "Environmental monitoring", zh: "环境检测" },
+      { en: "Sensor calibration", zh: "传感器校准" },
+      { en: "Data acquisition", zh: "数据采集" },
+      { en: "Actuator", zh: "执行器（如风扇、水泵、阀门等）" },
+      { en: "Feedback control", zh: "反馈控制" },
+      { en: "Threshold-based control", zh: "阈值控制" },
+      { en: "Microcontroller unit (MCU)", zh: "微控制器" },
+      { en: "IoT-based system", zh: "基于物联网的系统" },
+    ];
+
+    // 自动生成词汇列表
+    function renderVocabulary() {
+      const grid = document.getElementById('vocab-grid');
+      if (!grid) return;
+
+      vocabularyData.forEach(item => {
+        const vocabItem = document.createElement('div');
+        vocabItem.className = 'vocab-item';
+        
+        const enDiv = document.createElement('div');
+        enDiv.className = 'vocab-en';
+        enDiv.textContent = item.en;
+        
+        const zhDiv = document.createElement('div');
+        zhDiv.className = 'vocab-zh';
+        zhDiv.textContent = item.zh;
+        
+        vocabItem.appendChild(enDiv);
+        vocabItem.appendChild(zhDiv);
+        grid.appendChild(vocabItem);
+      });
+
+      // 自动更新日期为今天
+      const today = new Date().toISOString().split('T')[0];
+      const dateElement = document.getElementById('last-updated');
+      if (dateElement) {
+        dateElement.textContent = today;
+      }
+    }
+
+    // 页面加载时渲染词汇
+    renderVocabulary();
+  </script>
+
+ <script>
+(() => {
+  const canvas = document.getElementById("dots-canvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  let W = 0, H = 0;
+  const DPR = Math.min(2, window.devicePixelRatio || 1);
+
+  canvas.style.position = "fixed";
+  canvas.style.inset = "0";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "0";
+
+  document.querySelectorAll(".top, .wrap").forEach(el => {
+    el.style.position = "relative";
+    el.style.zIndex = "1";
+  });
+
+  // ===== Calm config (轻飘飘 / 悠闲 / 云团) =====
+  const cfg = {
+    // more dots (smaller => more)
+    areaPerDot: 9000,
+
+    // cloud around mouse
+    cloudRadius: 80,
+    cloudJitter: 0.006,  // subtle breathing
+
+    // slow drifting
+    baseSpeed: 0.12,
+    driftJitter: 0.035,
+    driftMaxSpeed: 0.18,
+    friction: 0.992,     // ✅ MUST be close to 1
+    edgeBounce: 0.88,    // ✅ don't "stick" to edges
+
+    // mouse influence
+    influenceR: 220,
+    maxCaptured: 52,
+
+    // dragging feel
+    springK: 0.020,
+    dragK: 0.0060,
+    repelK: 0.0005,
+
+    // lines
+    mouseLineMax: 110,
+    dotLineDist: 70,
+
+    // mouse speed break
+    breakSpeed: 3.0,
+  };
+
+  const dots = [];
+  const mouse = { x: -9999, y: -9999, active: false };
+
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const hypot = (x, y) => Math.sqrt(x * x + y * y);
+
+  class Dot {
+    constructor() {
+      this.reset(true);
+      this.captured = false;
+      this.slot = -1;
+
+      // cloud offset (each dot keeps its own "seat" in the cloud)
+      const a = rand(0, Math.PI * 2);
+      const r = Math.sqrt(Math.random()) * cfg.cloudRadius;
+      this.cloudOx = Math.cos(a) * r;
+      this.cloudOy = Math.sin(a) * r;
+
+      this.cloudWobble = rand(0, Math.PI * 2);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+
+      const a = rand(0, Math.PI * 2);
+      const sp = cfg.baseSpeed * rand(0.65, 1.15);
+      this.vx = Math.cos(a) * sp;
+      this.vy = Math.sin(a) * sp;
+
+      this.radius = rand(1.7, 3.0);
+      this.mass = rand(0.9, 1.3);
+
+      if (!initial) {
+        this.captured = false;
+        this.slot = -1;
+      }
+    }
+
+    step(target) {
+      // ===== idle: gentle float (always moving but calm) =====
+      if (!this.captured) {
+        // tiny wind
+        this.vx += (Math.random() - 0.5) * cfg.driftJitter;
+        this.vy += (Math.random() - 0.5) * cfg.driftJitter;
+
+        // keep speed under control
+        const sp = hypot(this.vx, this.vy) || 0.0001;
+        if (sp > cfg.driftMaxSpeed) {
+          this.vx = (this.vx / sp) * cfg.driftMaxSpeed;
+          this.vy = (this.vy / sp) * cfg.driftMaxSpeed;
+        }
+
+        // tiny pull toward baseSpeed so it feels "steady"
+        const sp2 = hypot(this.vx, this.vy) || 0.0001;
+        const k = 0.002;
+        this.vx += (this.vx / sp2) * (cfg.baseSpeed - sp2) * k;
+        this.vy += (this.vy / sp2) * (cfg.baseSpeed - sp2) * k;
+      }
+
+      // ===== captured: spring to cloud target + gentle drag to mouse =====
+      if (this.captured && mouse.active && target) {
+        // 继续保持缓慢的随机漂移（四散运动）
+        this.vx += (Math.random() - 0.5) * cfg.driftJitter * 0.5;
+        this.vy += (Math.random() - 0.5) * cfg.driftJitter * 0.5;
+        
+        const dx = target.x - this.x;
+        const dy = target.y - this.y;
+
+        this.vx += (dx * cfg.springK) / this.mass;
+        this.vy += (dy * cfg.springK) / this.mass;
+
+        const mx = mouse.x - this.x;
+        const my = mouse.y - this.y;
+        this.vx += (mx * cfg.dragK) / this.mass;
+        this.vy += (my * cfg.dragK) / this.mass;
+        
+        // 限制被捕获时的速度，保持缓慢运动
+        const capturedSpeed = hypot(this.vx, this.vy);
+        const maxCapturedSpeed = 0.65;
+        if (capturedSpeed > maxCapturedSpeed) {
+          this.vx = (this.vx / capturedSpeed) * maxCapturedSpeed;
+          this.vy = (this.vy / capturedSpeed) * maxCapturedSpeed;
+        }
+      } else {
+        this.captured = false;
+        this.slot = -1;
+      }
+
+      // integrate
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // damping
+      this.vx *= cfg.friction;
+      this.vy *= cfg.friction;
+
+      // bounds
+      if (this.x < 0) { this.x = 0; this.vx *= -cfg.edgeBounce; }
+      if (this.x > W) { this.x = W; this.vx *= -cfg.edgeBounce; }
+      if (this.y < 0) { this.y = 0; this.vy *= -cfg.edgeBounce; }
+      if (this.y > H) { this.y = H; this.vy *= -cfg.edgeBounce; }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.captured
+        ? "rgba(15, 42, 30, 0.34)"
+        : "rgba(15, 42, 30, 0.18)";
+      ctx.fill();
+    }
+  }
+
+  function initDots() {
+    dots.length = 0;
+    const count = Math.floor((W * H) / cfg.areaPerDot);
+    for (let i = 0; i < count; i++) dots.push(new Dot());
+  }
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    initDots();
+  }
+
+  window.addEventListener("resize", resize, { passive: true });
+
+  // mouse tracking (break if super fast)
+  let lastMouseTime = 0;
+  let lastMouseX = -9999;
+  let lastMouseY = -9999;
+
+  function updateMouse(x, y) {
+    const now = performance.now();
+    const dt = now - lastMouseTime;
+
+    if (dt > 0) {
+      const dx = x - lastMouseX;
+      const dy = y - lastMouseY;
+      const speed = hypot(dx, dy) / (dt || 1);
+
+      if (speed > cfg.breakSpeed) {
+        mouse.active = false;
+        mouse.x = -9999;
+        mouse.y = -9999;
+        dots.forEach(d => { d.captured = false; d.slot = -1; });
+      }
+    }
+
+    mouse.active = true;
+    mouse.x = x;
+    mouse.y = y;
+
+    lastMouseTime = now;
+    lastMouseX = x;
+    lastMouseY = y;
+  }
+
+  window.addEventListener("mousemove", (e) => {
+    updateMouse(e.clientX, e.clientY);
+  }, { passive: true });
+
+  window.addEventListener("mouseleave", () => {
+    mouse.active = false;
+    mouse.x = -9999;
+    mouse.y = -9999;
+    dots.forEach(d => { d.captured = false; d.slot = -1; });
+  }, { passive: true });
+
+  // capture dots near mouse
+  function captureDots() {
+    if (!mouse.active) {
+      dots.forEach(d => { d.captured = false; d.slot = -1; });
+      return [];
+    }
+
+    const candidates = [];
+    for (const d of dots) {
+      const dist = hypot(mouse.x - d.x, mouse.y - d.y);
+      if (dist < cfg.influenceR) candidates.push({ d, dist });
+    }
+
+    candidates.sort((a, b) => a.dist - b.dist);
+    const picked = candidates.slice(0, cfg.maxCaptured).map(o => o.d);
+
+    dots.forEach(d => d.captured = false);
+    picked.forEach((d, i) => {
+      d.captured = true;
+      d.slot = i;
+    });
+
+    return picked;
+  }
+
+  // build CLOUD targets (no rotation)
+  function buildTargets(picked) {
+    const targets = new Map();
+    if (!mouse.active || picked.length === 0) return targets;
+
+    for (const d of picked) {
+      // subtle breathing
+      d.cloudWobble += 0.01;
+      const wob = Math.sin(d.cloudWobble) * cfg.cloudJitter;
+
+      // slow offset drift (cloud stays alive but not chaotic)
+      d.cloudOx += (Math.random() - 0.5) * 0.10;
+      d.cloudOy += (Math.random() - 0.5) * 0.10;
+
+      // clamp to radius
+      const rr = hypot(d.cloudOx, d.cloudOy) || 0.0001;
+      const maxR = cfg.cloudRadius;
+      if (rr > maxR) {
+        d.cloudOx = (d.cloudOx / rr) * maxR;
+        d.cloudOy = (d.cloudOy / rr) * maxR;
+      }
+
+      targets.set(d, {
+        x: mouse.x + d.cloudOx * (1 + wob),
+        y: mouse.y + d.cloudOy * (1 + wob),
+      });
+    }
+
+    return targets;
+  }
+
+  // gentle repulsion so captured dots don't overlap
+  function repelCaptured(picked) {
+    const minD = 14;
+    for (let i = 0; i < picked.length; i++) {
+      for (let j = i + 1; j < picked.length; j++) {
+        const a = picked[i], b = picked[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = hypot(dx, dy) || 0.0001;
+        if (dist < minD) {
+          const push = (minD - dist) / minD;
+          const fx = (dx / dist) * push * cfg.repelK;
+          const fy = (dy / dist) * push * cfg.repelK;
+          a.vx += fx; a.vy += fy;
+          b.vx -= fx; b.vy -= fy;
+        }
+      }
+    }
+  }
+
+  function drawMouseLines(picked) {
+    for (const d of picked) {
+      const dist = hypot(mouse.x - d.x, mouse.y - d.y);
+      if (dist < cfg.mouseLineMax) {
+        const a = clamp(1 - dist / cfg.mouseLineMax, 0, 1);
+        if (a > 0.06) {
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(15, 42, 30, ${a * 0.26})`;
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function drawDotLines() {
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = hypot(dx, dy);
+        if (dist < cfg.dotLineDist) {
+          const a = clamp(1 - dist / cfg.dotLineDist, 0, 1);
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(15, 42, 30, ${a * 0.07})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+
+    const picked = captureDots();
+    const targets = buildTargets(picked);
+
+    if (picked.length) repelCaptured(picked);
+
+    for (const d of dots) {
+      d.step(targets.get(d));
+      d.draw();
+    }
+
+    if (picked.length) drawMouseLines(picked);
+    drawDotLines();
+
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  requestAnimationFrame(animate);
+})();
+</script>
+
+  <style>
+    /* 呼吸灯效果 - 中心光晕 */
+    .breathing-light {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(240, 255, 250, 0.55) 25%,
+        rgba(200, 245, 230, 0.40) 45%,
+        rgba(150, 230, 210, 0.25) 65%,
+        rgba(100, 200, 180, 0.15) 80%,
+        transparent 95%
+      );
+      pointer-events: none;
+      z-index: 0;
+      animation: breathing 4.5s ease-in-out infinite;
+      filter: blur(35px);
+    }
+
+    /* 第二层呼吸光 - 青绿色外环 */
+    .breathing-light-outer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at center,
+        rgba(224, 250, 244, 0.3) 0%,
+        rgba(150, 230, 215, 0.35) 35%,
+        rgba(100, 210, 155, 0.364) 55%,
+        rgba(70, 180, 160, 0.20) 70%,
+        rgba(50, 150, 130, 0.10) 85%,
+        transparent 95%
+      );
+      pointer-events: none;
+      z-index: 0;
+      animation: breathing 4.5s ease-in-out infinite;
+      animation-delay: 0.6s;
+      filter: blur(45px);
+    }
+
+    @keyframes breathing {
+      0%, 100% {
+        opacity: 0.35;
+        transform: translate(-50%, -50%) scale(0.93);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(1.07);
+      }
+    }
+
+    /* 确保内容在呼吸灯之上 */
+    .top, .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .vocab-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    
+    .vocab-item {
+      display: inline-flex;
+      flex-direction: column;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(15, 42, 30, 0.10);
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      max-width: fit-content;
+    }
+    
+    .vocab-item:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(12, 32, 22, 0.12);
+    }
+    
+    .vocab-en {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    
+    .vocab-zh {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+  </style>
+</body>
+</html>

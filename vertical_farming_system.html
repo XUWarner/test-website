@@ -3,49 +3,435 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>What is Vertical Farming?</title>
-  <link rel="stylesheet" href="../style.css"/>
+  <title>Smart Vertical Farming System | 智慧垂直农业系统</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand">XUWarner</div>
-      <div>
-        <a href="../index.html">Home</a>
-        <a href="../index.html#projects">Projects</a>
-        <a href="../index.html#about">About</a>
-      </div>
-    </div>
+  <!-- Fog layer (background, doesn't block clicks) -->
+  <canvas id="fog-canvas" aria-hidden="true"></canvas>
+  <canvas id="droplet-canvas" aria-hidden="true"></canvas>
 
-    <div class="card" style="margin-top:18px;">
-      <span class="badge">Notes</span>
-      <h1>What is Vertical Farming?</h1>
-      <p class="small">Last updated: 2026-02-19</p>
+  <!-- Same header style as Home -->
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="index.html">Home</a>
+      <a class="nav__link" href="projects/project.html">Projects</a>
+      <a class="nav__link" href="notes/notes.html">Notes</a>
+    </nav>
+  </header>
 
-      <h2>Definition｜定义</h2>
-      <p>
-        Vertical farming refers to growing crops in vertically stacked layers under controlled environments (CEA).
-        <br/>垂直农业指在可控环境（CEA）下，通过多层结构种植作物。
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">Notes / 笔记</h1>
+      <p class="hero__subtitle">
+        <span class="en">Learning notes (bilingual).</span>
+        <span class="sep">·</span>
+        <span class="zh">学习笔记（中英双语）。</span>
+      </p>
+    </section>
+
+    <section class="card" style="margin-top: 10px; font-size: calc(1em + 2px);">
+      <h2 class="card__title" style="font-size: 20px; margin-bottom: 14px;">Smart Vertical Farming System / 智慧垂直农业系统</h2>
+      <p class="card__p" style="margin-bottom: 24px;"><span class="en">Last updated:</span> <span class="zh">更新：</span> 2026-02-22</p>
+
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">Abstract / 介绍</h3>
+      <p class="card__p" style="margin-bottom: 20px;">
+        <span class="en">
+          This project presents a conceptual design of a smart vertical farming system for lettuce production under controlled environment agriculture (CEA).
+        </span>
+        <br/>
+        <span class="zh">该项目展示了在可控环境农业下的以生菜为样本的模型设计。</span>
+      </p>
+      <p class="card__p" style="margin-bottom: 20px;">
+        <span class="en">
+          The system integrates environmental sensing, a central intelligent control platform, and multiple subsystems including LED lighting, climate control, CO₂ regulation, fertigation, and pH monitoring.
+          A closed-loop feedback mechanism is used to dynamically adjust environmental parameters in order to improve yield stability, energy efficiency, and production consistency.
+        </span>
+        <br/>
+        <span class="zh">
+          该系统结合了环境传感器、中控系统以及包括LED照明系统、温控系统、二氧化碳调节系统、水肥系统以及pH检测系统等在内的多种亚系统。采用了动态调节环境参数以完成环境检测和反馈调节的闭环控制，以提升产量稳定性、能效最高利用、生产持续性。
+        </span>
       </p>
 
-      <h2>Key components｜核心要素</h2>
-      <ul class="list">
-        <li>LED grow lights｜植物生长灯</li>
-        <li>Hydroponics / Aeroponics｜水培/雾培</li>
-        <li>Climate control (temperature, humidity, CO₂)｜环境控制</li>
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">System Model / 系统模型</h3>
+      <div style="margin: 24px 0; text-align: center;">
+        <img src="vertical farming system model.png" alt="Vertical Farming System Model" style="max-width: 105%; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(12,32,22,.15);" />
+      </div>
+
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">What I Did / 我做了什么</h3>
+      <ul class="list" style="margin-bottom: 24px; font-size: 15px;">
+        <li>
+          <span class="en">Designed a smart vertical agriculture system architecture</span>
+          <span class="sep">·</span>
+          <span class="zh">设计了智慧垂直农场系统架构</span>
+        </li>
+        <li>
+          <span class="en">Built a closed-loop model of sensing-controlling-regulating</span>
+          <span class="sep">·</span>
+          <span class="zh">构建了传感-控制-执行的闭环模型</span>
+        </li>
+        <li>
+          <span class="en">Incorporated energy efficiency and natural cooling resources to achieve energy saving goals</span>
+          <span class="sep">·</span>
+          <span class="zh">纳入能效与自然冷源的节能思路</span>
+        </li>
+        <li>
+          <span class="en">Chose lettuce as model crop based on economic reasons</span>
+          <span class="sep">·</span>
+          <span class="zh">基于经济性选择生菜作为示例作物</span>
+        </li>
       </ul>
 
-      <h2>My take｜我的理解</h2>
-      <p>
-        In land-scarce cities like Singapore, vertical farming can improve yield per square meter,
-        but energy cost is a key constraint.
-        <br/>在新加坡这种土地稀缺城市，垂直农业能提高单位面积产量，但能耗成本往往是关键约束。
+      <p class="card__p" style="margin-bottom: 24px;">
+        <span class="en">Vertical farming systems depend on sensors, so IoT is crucial.</span>
+        <br/>
+        <span class="zh">垂直农业系统依赖于传感器，因此物联网十分重要。</span>
       </p>
-    </div>
 
-    <div class="footer">
-      <a href="../index.html">← Back to Home</a>
-    </div>
-  </div>
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">System Workflow / 系统工作逻辑</h3>
+      <p class="card__p" style="margin-bottom: 24px;">
+        <span class="en">
+          Sensors collect environmental data → Controller processes data → Control logic decides actions → Actuators change the environment
+        </span>
+        <br/>
+        <span class="zh">
+          传感器收集环境信息 → 控制器处理数据 → 逻辑判断决定如何调整 → 执行器调整参数改变环境
+        </span>
+      </p>
+
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">Important Parameters / 若干重要参数</h3>
+      
+      <div class="mini" style="gap: 24px;">
+        <div class="mini__item" style="margin-bottom: 18px; grid-template-columns: 120px 1fr; gap: 12px;">
+          <div class="mini__k" style="font-size: 15px; line-height: 1.6;">Temperature<br/>温度</div>
+          <div class="mini__v" style="font-size: 16px; line-height: 1.8;">
+            <span class="en">Lettuce ideal: 18~22℃</span><br/>
+            <span class="zh">生菜理想生长温度：18~22℃</span>
+          </div>
+        </div>
+        
+        <div class="mini__item" style="margin-bottom: 18px; grid-template-columns: 120px 1fr; gap: 12px;">
+          <div class="mini__k" style="font-size: 15px; line-height: 1.6;">Humidity<br/>湿度</div>
+          <div class="mini__v" style="font-size: 16px; line-height: 1.8;">
+            <span class="en">Lettuce ideal: 50~70% RH</span><br/>
+            <span class="zh">生菜理想生长湿度：50~70% RH</span>
+          </div>
+        </div>
+        
+        <div class="mini__item" style="margin-bottom: 18px; grid-template-columns: 120px 1fr; gap: 12px;">
+          <div class="mini__k" style="font-size: 15px; line-height: 1.6;">CO₂<br/>二氧化碳</div>
+          <div class="mini__v" style="font-size: 16px; line-height: 1.8;">
+            <span class="en">Higher CO₂ concentration means faster photosynthesis, but only effective when light and nutrients are sufficient</span><br/>
+            <span class="zh">高浓度二氧化碳促进光合作用效率，但要和水肥供应配合才能最大化生长效益</span>
+          </div>
+        </div>
+        
+        <div class="mini__item" style="margin-bottom: 18px; grid-template-columns: 120px 1fr; gap: 12px;">
+          <div class="mini__k" style="font-size: 15px; line-height: 1.6;">Light<br/>光照</div>
+          <div class="mini__v" style="font-size: 16px; line-height: 1.8;">
+            <span class="en">Light spectrum: red/blue ratio</span><br/>
+            <span class="zh">光谱：红光或蓝光</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a class="btn" href="index.html">
+          <span class="btn__t">Back to Home</span>
+          <span class="btn__s">返回首页</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+
+<script>
+(() => {
+  // ============ Layer 1: Fog ============
+  const fog = document.getElementById("fog-canvas");
+  const drop = document.getElementById("droplet-canvas");
+  if (!fog || !drop) return;
+
+  const fctx = fog.getContext("2d", { alpha: true });
+  const dctx = drop.getContext("2d", { alpha: true });
+
+  let W=0, H=0, DPR=Math.min(2, window.devicePixelRatio || 1);
+
+  // Keep canvases behind content and not block clicks
+  [fog, drop].forEach((c, i) => {
+    c.style.position = "fixed";
+    c.style.inset = "0";
+    c.style.pointerEvents = "none";
+    c.style.zIndex = (i===0) ? "0" : "0"; // both behind
+  });
+
+  // Ensure content above canvases
+  document.querySelectorAll(".top, .wrap").forEach(el => {
+    el.style.position = "relative";
+    el.style.zIndex = "1";
+  });
+
+  function resize(){
+    W = Math.floor(window.innerWidth);
+    H = Math.floor(window.innerHeight);
+
+    fog.width = Math.floor(W*DPR);
+    fog.height = Math.floor(H*DPR);
+    fog.style.width = W+"px";
+    fog.style.height = H+"px";
+    fctx.setTransform(DPR,0,0,DPR,0,0);
+
+    drop.width = Math.floor(W*DPR);
+    drop.height = Math.floor(H*DPR);
+    drop.style.width = W+"px";
+    drop.style.height = H+"px";
+    dctx.setTransform(DPR,0,0,DPR,0,0);
+
+    paintFogFull(); // reset fog
+  }
+  window.addEventListener("resize", resize, { passive:true });
+
+  // --- Create fog texture (grain) ---
+  let grainCanvas = document.createElement("canvas");
+  let gctx = grainCanvas.getContext("2d", { alpha:true });
+
+  function buildGrain(){
+    const s = 260;
+    grainCanvas.width = s;
+    grainCanvas.height = s;
+    gctx.clearRect(0,0,s,s);
+
+    const img = gctx.createImageData(s, s);
+    for(let i=0;i<img.data.length;i+=4){
+      // two-scale noise: fine + speckle
+      const base = 235 + Math.random()*20;   // bright fog grain
+      const speck = (Math.random() < 0.08) ? (210 + Math.random()*25) : base;
+
+      img.data[i]   = speck;
+      img.data[i+1] = speck;
+      img.data[i+2] = speck;
+
+      // more visible frosted texture
+      let a = 0;
+      if (Math.random() < 0.72) a = 18 + Math.random()*22; // fine grain
+      if (Math.random() < 0.05) a = 40 + Math.random()*35; // heavier speck
+      img.data[i+3] = a;
+    }
+    gctx.putImageData(img,0,0);
+  }
+
+  buildGrain();
+
+  // --- Fog state ---
+  let lastMove = performance.now();
+  let targetFog = 1; // 1 = full fog, 0 = none (we will keep it mostly 1)
+  let fogRebuildRequested = false;
+
+  function paintFogFull(){
+    fctx.clearRect(0,0,W,H);
+
+    // 1) Strong white fog base
+    fctx.globalCompositeOperation = "source-over";
+    fctx.fillStyle = "rgba(255,255,255,0.86)";
+    fctx.fillRect(0,0,W,H);
+
+    // 2) Depth clouds (bigger, more overlap)
+    for(let i=0;i<18;i++){
+      const x = Math.random()*W;
+      const y = Math.random()*H;
+      const r = 260 + Math.random()*560;
+      const grad = fctx.createRadialGradient(x,y,0,x,y,r);
+      grad.addColorStop(0, "rgba(255,255,255,0.55)");
+      grad.addColorStop(0.55, "rgba(255,255,255,0.18)");
+      grad.addColorStop(1, "rgba(255,255,255,0)");
+      fctx.fillStyle = grad;
+      fctx.beginPath();
+      fctx.arc(x,y,r,0,Math.PI*2);
+      fctx.fill();
+    }
+
+    // 3) Frosted grain overlay (stronger)
+    fctx.globalAlpha = 0.85;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    // 4) Slight vignette to feel like glass surface
+    const v = fctx.createRadialGradient(W*0.5,H*0.5, Math.min(W,H)*0.2, W*0.5,H*0.5, Math.max(W,H)*0.75);
+    v.addColorStop(0, "rgba(255,255,255,0)");
+    v.addColorStop(1, "rgba(255,255,255,0.18)");
+    fctx.fillStyle = v;
+    fctx.fillRect(0,0,W,H);
+  }
+
+  // Erase fog where mouse moves (clear track)
+  function wipeFog(x,y){
+    fctx.save();
+    fctx.globalCompositeOperation = "destination-out";
+
+    // Large soft wipe (outer)
+    const rBig = 150;
+    let g1 = fctx.createRadialGradient(x,y,0,x,y,rBig);
+    g1.addColorStop(0, "rgba(0,0,0,0.55)");
+    g1.addColorStop(0.6, "rgba(0,0,0,0.22)");
+    g1.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g1;
+    fctx.beginPath();
+    fctx.arc(x,y,rBig,0,Math.PI*2);
+    fctx.fill();
+
+    // Strong clean core (inner) — makes it look DRY & CLEAR
+    const rCore = 70;
+    let g2 = fctx.createRadialGradient(x,y,0,x,y,rCore);
+    g2.addColorStop(0, "rgba(0,0,0,1)");
+    g2.addColorStop(0.55, "rgba(0,0,0,0.98)");
+    g2.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g2;
+    fctx.beginPath();
+    fctx.arc(x,y,rCore,0,Math.PI*2);
+    fctx.fill();
+
+    // Extra "squeegee pass" line (subtle but sharp)
+    fctx.globalAlpha = 0.35;
+    fctx.beginPath();
+    fctx.ellipse(x, y, 120, 36, 0, 0, Math.PI*2);
+    fctx.fill();
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+  }
+
+  // Slowly restore fog after 3s idle, but not instant redraw (feels natural)
+  function restoreFogStep(dt){
+    const idle = (performance.now() - lastMove);
+    if (idle < 3000) return;
+
+    // slow re-fog: very gentle overlay
+    fctx.save();
+    fctx.globalCompositeOperation = "source-over";
+
+    // slower than before
+    fctx.fillStyle = "rgba(255,255,255,0.010)";
+    fctx.fillRect(0,0,W,H);
+
+    // grain overlay
+    fctx.globalAlpha = 0.04;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+
+    // full rebuild later, but not too soon
+    if (!fogRebuildRequested && idle > 25000){
+      fogRebuildRequested = true;
+      setTimeout(() => {
+        paintFogFull();
+        fogRebuildRequested = false;
+      }, 50);
+    }
+  }
+
+  // ============ Layer 2: Droplets ============
+  // Small droplets that slide down slowly, only visible on foggy areas
+  let droplets = [];
+  function spawnDroplet(x, y){
+    droplets.push({
+      x: x + (Math.random()*26-13),
+      y: y + (Math.random()*26-13),
+      r: 1.8 + Math.random()*3.6,         // bigger
+      vy: 28 + Math.random()*55,          // faster
+      life: 3.5 + Math.random()*4.2,      // longer
+      wobble: 0.6 + Math.random()*1.2,
+      t: 0
+    });
+    if (droplets.length > 120) droplets.splice(0, droplets.length - 120);
+  }
+
+  function drawDroplets(dt){
+    dctx.clearRect(0,0,W,H);
+    dctx.save();
+
+    for (let i=0;i<droplets.length;i++){
+      const p = droplets[i];
+      p.t += dt;
+
+      // slight side wobble like real droplets
+      p.x += Math.sin((p.t*3.2) + p.x*0.01) * p.wobble * 0.18;
+
+      p.y += p.vy * dt;
+
+      // More visible trail (wet streak)
+      const trailLen = 26 + p.r*10 + Math.random()*18;
+      dctx.globalAlpha = Math.max(0, 0.26 - p.t*0.035);
+      dctx.strokeStyle = "rgba(205, 235, 255, 0.95)";
+      dctx.lineWidth = Math.max(1, p.r*0.55);
+
+      dctx.beginPath();
+      dctx.moveTo(p.x, p.y - trailLen);
+      dctx.lineTo(p.x, p.y);
+      dctx.stroke();
+
+      // droplet head highlight
+      dctx.globalAlpha = Math.max(0, 0.55 - p.t*0.06);
+      dctx.fillStyle = "rgba(240, 252, 255, 0.98)";
+      dctx.beginPath();
+      dctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      dctx.fill();
+
+      // tiny specular highlight
+      dctx.globalAlpha = Math.max(0, 0.22 - p.t*0.05);
+      dctx.fillStyle = "rgba(255,255,255,0.95)";
+      dctx.beginPath();
+      dctx.arc(p.x - p.r*0.35, p.y - p.r*0.35, Math.max(0.6, p.r*0.35), 0, Math.PI*2);
+      dctx.fill();
+    }
+
+    droplets = droplets.filter(p => p.t < p.life && p.y < H + 60);
+    dctx.restore();
+  }
+
+  // ============ Input ============
+  function onMove(clientX, clientY){
+    lastMove = performance.now();
+    wipeFog(clientX, clientY);
+
+    // spawn a few droplets sometimes (not every frame)
+    if (Math.random() < 0.8) spawnDroplet(clientX, clientY);
+  }
+
+  window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive:true });
+  window.addEventListener("touchmove", (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    onMove(t.clientX, t.clientY);
+  }, { passive:true });
+
+  // ============ Animation loop ============
+  let last = performance.now();
+  function tick(now){
+    const dt = Math.min(0.033, (now-last)/1000);
+    last = now;
+
+    restoreFogStep(dt);
+    drawDroplets(dt);
+
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  paintFogFull();
+  requestAnimationFrame(tick);
+})();
+</script>
+
 </body>
 </html>

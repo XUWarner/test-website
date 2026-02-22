@@ -1,0 +1,12 @@
+专业词汇收集
+
+Vertical farming 垂直农业
+Controlled Environment Agriculture (CEA) 可控农业环境
+Environmental monitoring 环境检测
+Sensor calibration 传感器校准
+Data acquisition 数据采集
+Actuator 执行器（如风扇、水泵、阀门等）
+Feedback control 反馈控制
+Threshold-based control 阈值控制
+Microcontroller unit (MCU) 微控制器
+loT-based system 基于物联网的系统

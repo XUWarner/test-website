@@ -1,0 +1,64 @@
+# Abstract
+#介绍
+
+This project presents a conceptual design of a smart vertical farming system for lettuce production under controlled environment agriculture (CEA).
+该项目展示了在可控环境农业下的以生菜为样本的模型设计
+
+The system integrates environmental sensing, a central intelligent control platform, and multiple subsystems including LED lighting, climate control, CO₂ regulation, fertigation, and pH monitoring.
+A closed-loop feedback mechanism is used to dynamically adjust environmental parameters in order to improve yield stability, energy efficiency, and production consistency.
+该系统结合了环境传感器、中控系统以及包括LED照明系统、温控系统、二氧化碳调节系统、水肥系统以及pH检测系统等在内的多种亚系统。采用了动态调节环境参数以完成环境检测和反馈调节的闭环控制，以提升产量稳定性、能效最高利用、生产持续性。
+
+
+# What I did
+#我做了什么
+- 设计了智慧垂直农场系统架构
+- Design a smart vertical agricuture system
+- 构建了传感-控制-执行的闭环模型
+- Build a closed-loop model of sensoring-controlling-regulating
+- 纳入能效与自然冷源的节能思路
+- Take energy efficiency and natural cooling resource to achive energy saving goals
+- 基于经济性选择生菜作为示例作物
+- Choose lettuce as model crop based on economic reasons.
+
+#Key Feature of vertical farming
+#垂直农业的关键特征
+1.Indoor or semi-indoor environment
+1.室内或半室内
+2.Multi-layer racks
+2.多层种植架
+3.Artificial lighting(LED)
+3.照明补光系统
+4.Precise control of temperature, humidity, carbon dioxide concentrantion, light spectrum, nutrients
+4.精确控制温度、湿度、二氧化碳浓度、光谱、营养液等
+
+vertical farming system depends on sensors, so loT is crucial.
+垂直农业系统依赖于传感器，因此物联网十分重要
+
+So the whole system works like:
+整个系统的工作逻辑展示：
+sensors collect environmental data --- Controller processes data ---Control logic decides actions --- Actuators change the environment
+传感器收集环境信息 --- 控制器处理数据 --- 逻辑判断决定如何调整 --- 执行器调整参数改变环境
+
+
+#Several Important parameters
+#若干重要参数
+
+Temperature
+温度
+Lettuce ideal：18~22℃
+生菜理想生长温度：18~22℃
+
+Humidity
+湿度
+Lettuce ideal: 50~70% RH
+生菜理想生长湿度：50~70% RH
+
+Carbon dioxide concentration
+二氧化碳浓度
+Higher carbon dioxide concentration means faster photosynthesis, but only effective when the light and nutrients are sufficient
+高浓度二氧化碳促进光合作用效率，但要和水肥供应配合才能最大化生长效益
+
+Light
+光照
+Light spectrum: red/blue ratio
+光谱：红光或蓝光

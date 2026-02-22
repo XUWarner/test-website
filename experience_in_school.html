@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XUWanner / 许莞儿 | Experience in School</title>
+  <meta name="description" content="My school experience and activities. / 我的学校经历与活动。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Seasonal FX Canvas (doesn't block clicks) -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- Left selector panel: 特效开关（可展开/收起） -->
+  <div class="fx-panel js-fx-panel" aria-label="Seasonal effects selector">
+    <button type="button" class="fx-panel__toggle js-fx-panel-toggle" aria-expanded="false" aria-controls="fx-panel-body">
+      特效开关
+    </button>
+    <div class="fx-panel__body" id="fx-panel-body" hidden>
+      <div class="fx-panel__title">Effects / 特效</div>
+      <button class="fx-btn" data-fx="auto">Auto / 随北半球季节变化</button>
+      <button class="fx-btn" data-fx="spring">Spring Petals / 春·花瓣</button>
+      <button class="fx-btn" data-fx="summer">Summer Seeds / 夏·蒲公英</button>
+      <button class="fx-btn" data-fx="autumn">Autumn Leaves / 秋·枫叶</button>
+      <button class="fx-btn" data-fx="winter">Winter Snow / 冬·雪花</button>
+      <button class="fx-btn" data-fx="none">None / 关闭</button>
+    </div>
+  </div>
+
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="index.html">Home</a>
+      <a class="nav__link" href="projects/project.html">Projects</a>
+      <a class="nav__link" href="notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">Experience in School</h1>
+      <p class="hero__subtitle">
+        <span class="en">Academic journey in crop genetics and breeding.</span>
+        <span class="sep">·</span>
+        <span class="zh">作物遗传育种的学业历程。</span>
+      </p>
+    </section>
+
+    <!-- Summary -->
+    <section class="card" aria-label="Summary">
+      <h2 class="card__title">Summary / 个人概要</h2>
+      <p class="card__p">
+        <span class="en">Background in crop genetics and breeding with complete workflow experience: phenotyping (microscopy/image analysis) → data processing (Excel/Python) → computational analysis (Linux/HPC, GWAS) → result reporting. Continuously learning smart agriculture/plant factory (IoT/ESP32).</span>
+        <br /><br />
+        <span class="zh">作物遗传育种背景，具备"表型采集（显微镜/图像统计）—数据处理（Excel/Python）—计算分析（Linux/HPC，GWAS）—结果汇报"的完整链路经验；对智慧农业/植物工厂方向保持持续学习（IoT/ESP32）。</span>
+      </p>
+    </section>
+
+    <!-- Education -->
+    <section class="card" aria-label="Education">
+      <h2 class="card__title">Education / 教育背景</h2>
+      <div class="mini">
+        <div class="mini__item">
+          <div class="mini__k">2023.09 - 2026.06</div>
+          <div class="mini__v">
+            <span class="en">China Agricultural University · Master · Crop Genetics and Breeding</span><br>
+            <span class="zh">中国农业大学农学院 · 硕士 · 作物遗传育种专业</span>
+          </div>
+        </div>
+        <div class="mini__item">
+          <div class="mini__k">2019.09 - 2023.06</div>
+          <div class="mini__v">
+            <span class="en">China Agricultural University · Bachelor · Seed Science and Engineering</span><br>
+            <span class="zh">中国农业大学农学院 · 学士 · 种子科学与工程专业</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="card" aria-label="Skills">
+      <h2 class="card__title">Skills / 核心技能</h2>
+      <div class="skill-grid">
+        <div class="skill-item">
+          <div class="skill-item__title">Field & Phenotyping</div>
+          <div class="skill-item__content">
+            <span class="zh">玉米套袋授粉、考种、剥粒、打粉、称量；水稻叶片气孔玻片制作、显微镜观察拍照与气孔密度统计（sample tracking & QC）。</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__title">Seed/NMR</div>
+          <div class="skill-item__content">
+            <span class="zh">籽粒水分测量；LF-NMR 单籽粒无损检测与核磁成像流程基础。</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__title">Molecular Lab</div>
+          <div class="skill-item__content">
+            <span class="zh">DNA 提取、载体构建、酵母双杂（Y2H）、田间取样与样品管理（SOP-based）。</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__title">Data & Computing</div>
+          <div class="skill-item__content">
+            <span class="zh">Linux（HPC 环境命令行）、GWAS（GEMMA / rMVP；有 GAPIT 排错与方案切换经验）；Excel 数据清洗/透视表/可视化；少量 Python 脚本用于批处理与数据整理。</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__title">Tools & Reporting</div>
+          <div class="skill-item__content">
+            <span class="zh">SnapGene、ImageJ/ImageView、PyCharm（基础）；科研汇报 PPT 与图表表达（Manhattan/QQ）。</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__title">AI-assisted Productivity</div>
+          <div class="skill-item__content">
+            <span class="zh">使用结构化提示与 AI 工具协作，提升文献要点提取、汇报材料撰写、Python/命令行 debug 思路梳理效率；关键结论进行人工复核并保留可复现记录。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research & Projects -->
+    <section class="card" aria-label="Research">
+      <h2 class="card__title">Research & Projects / 科研项目经历</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2025.03 - 2026.06</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学 水稻实验中心 | 水稻气孔密度表型测定与 GWAS 分析（Linux/HPC）</div>
+            <ul class="timeline-list">
+              <li>独立完成显微镜观察与拍照，基于照片进行气孔密度汇总统计；建立记录与质控逻辑，保证样品-图片-数据可追溯。</li>
+              <li>以 Excel 为主完成数据清洗、汇总与统计（透视表/图表/一致性检查）；编写少量 Python 脚本辅助批处理与数据整理。</li>
+              <li>在 Linux/HPC 环境使用命令行完成 GEMMA、rMVP GWAS 流程（曾尝试 GAPIT 并排错）；输出 Manhattan plot、QQ plot 等结果并制作汇报 PPT；相关工作持续推进中。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2025.02 - 2025.03</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学三亚研究院 | 田间调查与水稻叶片气孔玻片制作</div>
+            <ul class="timeline-list">
+              <li>完成气孔玻片制作与样品归档，支持后续显微镜观察与数据统计。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2024.01 - 2025.01</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学 上庄实验站 | 水稻气孔密度观测课题</div>
+            <ul class="timeline-list">
+              <li>参与观测与数据整理；协助完成立项申请材料准备（背景、技术路线、预期指标等基础内容）。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2023.09 - 2024.01</div>
+          <div class="timeline-content">
+            <div class="timeline-title">农学院水稻研究中心（李自超教授课题组）| 耐旱耐盐碱基因前期实验</div>
+            <ul class="timeline-list">
+              <li>参与基因功能相关前期实验与样品处理，按 SOP 完成关键步骤并整理实验记录。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2022.12 - 2023.07</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学农学院 小麦研究中心（宗媛教授课题组）| 小麦产量相关基因研究</div>
+            <ul class="timeline-list">
+              <li>完成 DNA 提取、引物设计、扩增克隆、测序验证与结果分析；提交报告《利用引导编辑技术编辑小麦高产基因 TaCOL-B5》。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2022.06 - 2022.09</div>
+          <div class="timeline-content">
+            <div class="timeline-title">《小麦面食品加工理论与实践》（李保云、梁荣奇 主编）| 编校与文字润色</div>
+            <ul class="timeline-list">
+              <li>负责第九章文字润色与编校，协助统一术语与格式，提高内容一致性与可读性。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2021.01 - 2021.12</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学董学会老师课题组 | 玉米籽粒脱水性分析（LF-NMR）</div>
+            <ul class="timeline-list">
+              <li>参与先玉335、郑单958等品种脱水性分析与数据整理，支持论文产出。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="card" aria-label="Publications">
+      <h2 class="card__title">Publications / 论文与成果</h2>
+      <div class="pub-item">
+        <div class="pub-title">《基于低场核磁共振技术的玉米籽粒发育过程中水分变化规律》</div>
+        <div class="pub-meta">《玉米科学》· 第三作者 · 参与实验实施与数据整理</div>
+      </div>
+    </section>
+
+    <!-- Campus Experience -->
+    <section class="card" aria-label="Campus">
+      <h2 class="card__title">Campus Experience / 校园经历</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2020.09 - 2021.09</div>
+          <div class="timeline-content">
+            <div class="timeline-title">中国农业大学农学院 职业发展中心 | 宣传部副部长 & 种科191 班职业发展委员</div>
+            <ul class="timeline-list">
+              <li>组织就业意向调研、就业技巧讲座等活动，负责会务支持与流程推进。</li>
+              <li>完成活动文档记录，协助撰写会议纪要/总结报告。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors -->
+    <section class="card" aria-label="Honors">
+      <h2 class="card__title">Honors & Certificates / 获奖与证书</h2>
+      <div class="chips" role="list">
+        <span class="chip" role="listitem">2024.12 中国农业大学硕士 二等学业奖学金</span>
+        <span class="chip" role="listitem">CET-6: 534</span>
+        <span class="chip" role="listitem">C1 驾照</span>
+        <span class="chip" role="listitem">普通话二级甲等</span>
+      </div>
+    </section>
+
+    <!-- Optional -->
+    <section class="card" aria-label="Optional">
+      <h2 class="card__title">Optional / 加分项：Smart Ag / IoT</h2>
+      <p class="card__p">
+        <span class="zh">正在学习 IoT/ESP32，已完成前期软硬件准备与开发环境配置；计划基于传感器数据采集（如温湿度）构建智慧农业 Demo（learning-in-progress, ready for prototyping）。</span>
+      </p>
+    </section>
+
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+
+  <style>
+    /* 技能网格布局 */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .skill-item {
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(15, 42, 30, 0.10);
+      transition: all 0.2s ease;
+    }
+
+    .skill-item:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(12, 32, 22, 0.12);
+    }
+
+    .skill-item__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .skill-item__content {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* 时间线样式 */
+    .timeline {
+      margin-top: 20px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(15, 42, 30, 0.08);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .timeline-date {
+      flex-shrink: 0;
+      width: 140px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      padding-top: 2px;
+    }
+
+    .timeline-content {
+      flex: 1;
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-list li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-left: 18px;
+      position: relative;
+      letter-spacing: 0.3px;
+    }
+
+    .timeline-list li:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: rgba(15, 42, 30, 0.4);
+      font-weight: 700;
+    }
+
+    .timeline-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 论文样式 */
+    .pub-item {
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(15, 42, 30, 0.10);
+      margin-top: 16px;
+    }
+
+    .pub-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    .pub-meta {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .timeline-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .timeline-date {
+        width: auto;
+      }
+
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script src="fx.js"></script>
+</body>
+</html>

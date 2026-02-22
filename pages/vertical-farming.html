@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Key Features of Vertical Farming | 垂直农业的关键特征</title>
+  <meta name="description" content="Key features and characteristics of vertical farming systems. / 垂直农业系统的关键特征。" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <!-- Seasonal FX Canvas (doesn't block clicks) -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- Left selector panel: 特效开关（可展开/收起） -->
+  <div class="fx-panel js-fx-panel" aria-label="Seasonal effects selector">
+    <button type="button" class="fx-panel__toggle js-fx-panel-toggle" aria-expanded="false" aria-controls="fx-panel-body">
+      特效开关
+    </button>
+    <div class="fx-panel__body" id="fx-panel-body" hidden>
+      <div class="fx-panel__title">Effects / 特效</div>
+      <button class="fx-btn" data-fx="auto">Auto / 随北半球季节变化</button>
+      <button class="fx-btn" data-fx="spring">Spring Petals / 春·花瓣</button>
+      <button class="fx-btn" data-fx="summer">Summer Seeds / 夏·蒲公英</button>
+      <button class="fx-btn" data-fx="autumn">Autumn Leaves / 秋·枫叶</button>
+      <button class="fx-btn" data-fx="winter">Winter Snow / 冬·雪花</button>
+      <button class="fx-btn" data-fx="none">None / 关闭</button>
+    </div>
+  </div>
+
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="../index.html">Home</a>
+      <a class="nav__link" href="../projects/project.html">Projects</a>
+      <a class="nav__link" href="../notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">Key Features of Vertical Farming</h1>
+      <p class="hero__subtitle">
+        <span class="en">Essential characteristics of vertical farming systems.</span>
+        <span class="sep">·</span>
+        <span class="zh">垂直农业的关键特征。</span>
+      </p>
+    </section>
+
+    <section class="card" aria-label="Key Features">
+      <h2 class="card__title">Key Features of Vertical Farming / 垂直农业的关键特征</h2>
+      <ul class="list" style="margin-top: 20px; font-size: 15px;">
+        <li>
+          <span class="en">Indoor or semi-indoor environment</span>
+          <span class="sep">·</span>
+          <span class="zh">室内或半室内</span>
+        </li>
+        <li>
+          <span class="en">Multi-layer racks</span>
+          <span class="sep">·</span>
+          <span class="zh">多层种植架</span>
+        </li>
+        <li>
+          <span class="en">Artificial lighting (LED)</span>
+          <span class="sep">·</span>
+          <span class="zh">照明补光系统</span>
+        </li>
+        <li>
+          <span class="en">Precise control of temperature, humidity, CO₂ concentration, light spectrum, nutrients</span>
+          <span class="sep">·</span>
+          <span class="zh">精确控制温度、湿度、二氧化碳浓度、光谱、营养液等</span>
+        </li>
+      </ul>
+
+      <div style="margin-top: 32px;">
+        <a class="btn" href="../index.html">
+          <span class="btn__t">Back to Home</span>
+          <span class="btn__s">返回主界面</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="en">Built with HTML/CSS · Deployed on Ubuntu + Nginx</span>
+      <span class="sep">·</span>
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+
+  <script src="../fx.js"></script>
+</body>
+</html>
