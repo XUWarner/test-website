@@ -1,0 +1,20 @@
+#Three questions
+What is our core business?
+核心业务是什么？
+Who are our target users?
+用户是谁？
+Who are our main competitors?
+主要竞争对手是谁？
+
+#工具
+Pivot Table
+透视表
+
+a tool to quickly summarize large amounts of data
+用于快速处理大量数据的工具
+
+Copetitors comparison table
+竞品对比表格
+
+a competitor comparison table is a structured way to compare products, companies, or solutions.
+竞品对比表是结构化的对比产品、公司、解决方案

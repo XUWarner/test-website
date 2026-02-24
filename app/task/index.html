@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Step by Step · Task Planner</title>
+  <meta name="description" content="A simple daily task planner (local-first)." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand__title">STEP BY STEP</div>
+        <div class="brand__sub">My simple daily task planner</div>
+      </div>
+
+      <nav class="nav" aria-label="Task views">
+        <button class="nav__item is-active" data-view="today">Today</button>
+        <button class="nav__item" data-view="week">Week</button>
+        <button class="nav__item" data-view="all">All</button>
+        <button class="nav__item" data-view="done">Done</button>
+      </nav>
+
+      <div class="card card--soft">
+        <div class="card__title">Views</div>
+        <div class="coming-soon">
+          <div class="coming-soon__big">Month / Year</div>
+          <div class="coming-soon__small">Coming soon (v2.0)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__title">Backup</div>
+        <div class="row">
+          <button class="btn" id="btnExport">Export JSON</button>
+          <label class="btn btn--ghost" for="importFile">Import</label>
+          <input id="importFile" type="file" accept="application/json" hidden />
+        </div>
+        <div class="hint">Local-first. No login. Stored in your browser.</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar__left">
+          <h1 class="h1" id="viewTitle">Today</h1>
+          <div class="meta" id="viewMeta"></div>
+        </div>
+
+        <div class="topbar__right">
+          <input class="input" id="searchInput" placeholder="Search tasks (title / note)..." />
+          <button class="btn btn--ghost" id="btnClearSearch" title="Clear search">Clear</button>
+        </div>
+      </header>
+
+      <section class="composer card">
+        <div class="composer__row">
+          <input class="input input--big" id="titleInput" placeholder="Add a task..." />
+          <input class="input" id="dueInput" type="date" />
+          <button class="btn btn--primary" id="btnAdd">Add</button>
+        </div>
+        <div class="composer__row">
+          <input class="input" id="noteInput" placeholder="Note (optional)..." />
+          <div class="hint">
+            No-due tasks will also show in Today (your choice). If it gets messy, we can add “Fold no-due”.
+          </div>
+        </div>
+      </section>
+
+      <section class="listWrap">
+        <div class="listHeader">
+          <div class="pill" id="statsPill">0 tasks</div>
+          <div class="listActions">
+            <button class="btn btn--ghost" id="btnHideNoDue">Hide no-due (Today)</button>
+          </div>
+        </div>
+
+        <ul class="taskList" id="taskList"></ul>
+
+        <div class="empty" id="emptyState" hidden>
+          <div class="empty__title">No tasks here ✨</div>
+          <div class="empty__sub">Add one above, or switch views.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__head">
+        <div>
+          <div class="modal__title" id="modalTitle">Edit task</div>
+          <div class="modal__sub" id="modalSub"></div>
+        </div>
+        <button class="btn btn--ghost" data-close="1">Close</button>
+      </div>
+
+      <div class="modal__body">
+        <label class="label">Title</label>
+        <input class="input input--big" id="editTitle" />
+
+        <label class="label">Due date</label>
+        <input class="input" id="editDue" type="date" />
+
+        <label class="label">Note</label>
+        <textarea class="input textarea" id="editNote" rows="4"></textarea>
+      </div>
+
+      <div class="modal__foot">
+        <button class="btn btn--danger" id="btnDelete">Delete</button>
+        <div class="spacer"></div>
+        <button class="btn" data-close="1">Cancel</button>
+        <button class="btn btn--primary" id="btnSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
