@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>视觉识别检测产品案例 | XUWanner 许莞儿</title>
+  <meta name="description" content="基于AI的制造业质量检测产品案例"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../effects-manager.js"></script>
+</head>
+
+<body>
+  <!-- Fog layer -->
+  <canvas id="fog-canvas" aria-hidden="true"></canvas>
+  <canvas id="droplet-canvas" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="../index.html">Home</a>
+      <a class="nav__link" href="project.html">Projects</a>
+      <a class="nav__link" href="../notes/notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__title">视觉识别检测产品案例</h1>
+      <p class="hero__subtitle">
+        基于AI的制造业质量检测产品
+      </p>
+    </section>
+
+    <section class="card" style="margin-top: 10px; font-size: calc(1em + 2px);">
+      <h2 class="card__title" style="font-size: 20px; margin-bottom: 14px;">视觉识别检测-产品案例</h2>
+      <p class="card__p" style="margin-bottom: 8px; color: var(--muted); font-size: 14px;">Problem——Goal——Solution——Metrics——Rollout——Iteration——Reflection</p>
+      <p class="card__p" style="margin-bottom: 24px;">更新：2026-03-03</p>
+
+      <!-- Overview -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 24px;">概述</h3>
+      <p class="card__p" style="margin-bottom: 20px;">
+        在制造业质检场景中，我们发现当前仍以人工目视检测为主，一线检测员需要长时间进行重复性劳动，容易产生疲劳，导致检测准确率随时间和班次波动，同时人工质检成本也较高。
+      </p>
+      <p class="card__p" style="margin-bottom: 20px;">
+        针对这一痛点，我们设计了一款基于 AI 的视觉检测产品，通过深度学习模型对产品图像进行识别与缺陷标记，承担高频、标准化的初筛检测任务，在降低人工工时的同时提升检测一致性与稳定性，并通过人机协同机制在低置信度场景下保留人工复核，控制质量风险。
+      </p>
+      <p class="card__p" style="margin-bottom: 20px;">
+        在效果评估上，我们从效率、质量与成本三个维度设定指标，例如人均质检工时下降、召回率优先保障、班次间准确率波动降低，以及系统在一定周期内实现成本回本。
+      </p>
+      <p class="card__p" style="margin-bottom: 20px;">
+        在落地过程中，采用小范围试点推进，用真实数据验证价值并逐步推广，同时通过低置信度样本回流与仪表盘监控形成持续优化闭环。整体目标是在保证质量底线的前提下，实现质检环节的效率提升与长期降本增效。
+      </p>
+
+      <!-- Background & Context -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">背景与场景</h3>
+      
+      <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(15,42,30,0.08);">
+        <p class="card__p" style="margin-bottom: 12px; font-weight: 600;">
+          行业：制造业
+        </p>
+        <p class="card__p" style="margin-bottom: 16px;">
+          场景：离散制造业—工厂内标准件生产 or 流程制造业流水产线
+        </p>
+        
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          调研发现问题（为什么会有这个产品需求）：
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">人工质检成本过高</li>
+          <li style="margin-bottom: 8px;">目前仍采用目视检测，效率可改进</li>
+          <li style="margin-bottom: 8px;">检测员长时间检测，工时过长导致注意力分散，检测效率下降</li>
+          <li>检测班组轮岗交接导致检测准确率波动</li>
+        </ul>
+        
+        <p class="card__p" style="margin-top: 16px;">
+          在制造业标准件/流水产线场景中，当前质检环节仍以人工目视检测为主，存在人工成本高、效率受限、检测准确率随工时与班次波动等问题。长期高强度重复劳动不仅影响一线检测员的工作体验，也导致质量稳定性难以保障，进而影响整体生产效率与质量风险控制。
+        </p>
+      </div>
+
+      <!-- User & Pain Points -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">用户画像与核心痛点</h3>
+      
+      <p class="card__p" style="margin-bottom: 16px; font-weight: 600;">谁将使用此产品：</p>
+      <ul style="margin: 0 0 20px 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+        <li>一线检测员</li>
+        <li>质检主管/生产经理</li>
+      </ul>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+        <div style="background: rgba(255,255,255,0.65); padding: 18px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 12px; font-size: 16px; color: var(--text); font-weight: 600;">
+            一线检测员
+          </h4>
+          <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--muted);">
+            长时间重复性目检导致疲劳，检测效率与准确率随时间下降
+          </p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.65); padding: 18px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 12px; font-size: 16px; color: var(--text); font-weight: 600;">
+            质检主管/生产经理
+          </h4>
+          <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--muted);">
+            质检结果随班次波动，质量稳定性难以量化管理，KPI 压力大，缺乏实时可视化监控手段
+          </p>
+        </div>
+      </div>
+
+      <!-- Product Goal -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">产品目标</h3>
+      
+      <div style="background: rgba(240,248,255,0.7); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(15,42,30,0.08);">
+        <h4 style="margin: 0 0 12px; font-size: 15px; color: var(--text); font-weight: 600;">
+          产品需要解决的问题：
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">在不增加质量风险的前提下，显著降低人工质检工时</li>
+          <li style="margin-bottom: 8px;">提升并稳定质检准确率，减少班次差异</li>
+          <li style="margin-bottom: 8px;">建立可视化质量监控体系，支持管理决策</li>
+          <li>构建可持续迭代、可迁移的 AI 识别能力</li>
+        </ul>
+        
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          理想完成状况：
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">引入产品后明显减少一线检测员工时</li>
+          <li style="margin-bottom: 8px;">提高检测准确率及稳定性，首先保证与人工识别水准相当</li>
+          <li style="margin-bottom: 8px;">控制质量风险，降低返工率</li>
+          <li style="margin-bottom: 8px;">建立了可视化的检测指标屏幕，并建立指标评估概念，便于推行</li>
+          <li>成功建立识别系统模型，并留有迭代优化入口，建立可迁移的识别系统</li>
+        </ul>
+      </div>
+
+      <!-- Solution Overview -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">解决方案概述（产品方案）</h3>
+      
+      <div style="background: rgba(245,250,248,0.8); padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 4px solid rgba(15,42,30,0.25);">
+        <h4 style="margin: 0 0 12px; font-size: 16px; color: var(--text); font-weight: 600;">
+          设计了什么样的产品：
+        </h4>
+        <ul style="margin: 0 0 16px; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">可适应多场景多产品的AI辅助视觉检测系统</li>
+          <li style="margin-bottom: 8px;">代替人工目视检测，将质检流程机械化、数字化</li>
+          <li>建立人机协同机制，低置信度样本交由人工重新复核</li>
+        </ul>
+
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          核心功能是什么：
+        </h4>
+        <ul style="margin: 0 0 16px; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">检测产品瑕疵</li>
+          <li style="margin-bottom: 8px;">自动缺陷标记</li>
+          <li>与剔除系统互作，排除次品，防止流入生产环节</li>
+        </ul>
+
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          AI在其中扮演什么角色：
+        </h4>
+        <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--muted);">
+          AI 在其中扮演辅助与自动化执行角色，承担高频、标准化的初筛检测任务，降低人工负担，同时通过人机协同机制保证质量底线。
+        </p>
+      </div>
+
+      <!-- Success Metrics -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">成功指标/评价体系</h3>
+      
+      <p class="card__p" style="margin-bottom: 16px; font-weight: 600;">成功标准：</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <div style="background: rgba(240,255,245,0.6); padding: 16px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+            ⚡ 效率指标
+          </h4>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--muted);">
+            成功降低人均工时约x小时
+          </p>
+        </div>
+
+        <div style="background: rgba(240,255,245,0.6); padding: 16px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+            🎯 质量指标
+          </h4>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--muted);">
+            • 班次间准确率波动CV变异系数在xx（稳定性判断）
+            <br/>
+            • 准确率≥人工识别准确率
+            <br/>
+            • 识别准确率在xx%（识别正确占总数），精确率在xx%（识别真阳占真阳+假阳，即识别真阳占识别总数），召回率在xx%（识别真阳占总阳性）
+          </p>
+        </div>
+
+        <div style="background: rgba(240,255,245,0.6); padding: 16px; border-radius: 12px; border: 1px solid rgba(15,42,30,0.10);">
+          <h4 style="margin: 0 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+            💰 成本指标
+          </h4>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--muted);">
+            • 建设+维护成本在xx月内回本
+            <br/>
+            • 采用该识别系统，客户满意率上升或不变成功，下降则需改进原因
+          </p>
+        </div>
+      </div>
+
+      <!-- Rollout Strategy -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">落地与推广策略</h3>
+      
+      <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(15,42,30,0.08);">
+        <h4 style="margin: 0 0 12px; font-size: 15px; color: var(--text); font-weight: 600;">
+          怎么从0到1落地？
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">小范围试点推广</li>
+          <li style="margin-bottom: 8px;">设立检测指标，可视化对比，实时显示人工检测与产品检测效率差异，并作日结、月结汇总</li>
+          <li style="margin-bottom: 8px;">将试点工人人均工时减少与效益提高的事实进行宣传，逐步推广使用</li>
+          <li>变革管理策略，优化信息传递渠道长度</li>
+        </ul>
+        
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          怎么应对人员抵触？
+        </h4>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">不硬碰硬沟通，注意沟通方法</li>
+          <li style="margin-bottom: 8px;">将试点结果及好处用数据说明，进行收益对比，包括工时变化和绩效变化</li>
+          <li>在试点过程中同步邀请一线检测员参与反馈与共创，增强其对系统的参与感与信任感</li>
+        </ul>
+      </div>
+
+      <!-- Iteration & Optimization -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">迭代与持续优化机制</h3>
+      
+      <div style="background: rgba(245,250,248,0.8); padding: 18px; border-radius: 12px; margin-bottom: 24px; border-left: 4px solid rgba(15,42,30,0.25);">
+        <p class="card__p" style="margin-bottom: 12px; font-weight: 600;">上线后如何持续改进：</p>
+        <ul style="margin: 0; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 10px;">
+            重点关注低置信度样本，返回系统模型迭代训练，优化模型参数
+          </li>
+          <li style="margin-bottom: 10px;">
+            关注模型是否有不稳定问题，试验初期采取人机结合的模式，防范生产过程风险
+          </li>
+          <li style="margin-bottom: 10px;">
+            Dashboard监控，实时可视化检测系统识别效果
+          </li>
+          <li style="margin-bottom: 10px;">
+            指标驱动优化，持续推动训练效果提升，提高识别准确率精确率召回率
+          </li>
+          <li>
+            建立"识别结果 → 误判反馈 → 数据回流 → 模型迭代"的闭环机制
+          </li>
+        </ul>
+      </div>
+
+      <!-- PM Role & Reflection -->
+      <h3 class="section-title" style="font-size: 18px; margin-bottom: 14px; margin-top: 32px; color: rgba(15,42,30,0.85);">角色与反思</h3>
+      
+      <div style="background: rgba(240,248,255,0.7); padding: 18px; border-radius: 12px; margin-bottom: 24px; border: 1px solid rgba(15,42,30,0.08);">
+        <h4 style="margin: 0 0 12px; font-size: 15px; color: var(--text); font-weight: 600;">
+          PM在项目中的角色：
+        </h4>
+        <ul style="margin: 0 0 16px; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">问题调研发现</li>
+          <li style="margin-bottom: 8px;">痛点难点拆解分析</li>
+          <li style="margin-bottom: 8px;">分割问题逐步推出解决方案</li>
+          <li style="margin-bottom: 8px;">初步草案提出</li>
+          <li style="margin-bottom: 8px;">对接产品用户与模型研发团队，找到项目折中点</li>
+          <li style="margin-bottom: 8px;">对接财务申领资金指标</li>
+          <li style="margin-bottom: 8px;">推动方案试点推行情况及效果，沟通协调推进产品应用</li>
+          <li>关注后续使用问题，持续反馈推进，直至产品稳定运行，大规模投产</li>
+        </ul>
+        
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          学到了什么：
+        </h4>
+        <ul style="margin: 0 0 16px; padding-left: 24px; line-height: 1.85; color: var(--muted);">
+          <li style="margin-bottom: 8px;">发现生产场景问题，训练敏锐度，对生产环节可改进部分持续关注</li>
+          <li style="margin-bottom: 8px;">问题拆解分析能力，锻炼洞悉能力</li>
+          <li style="margin-bottom: 8px;">对接不同角色的方式及技巧，如何协调技术与业务</li>
+          <li style="margin-bottom: 8px;">学习新知识及技术，保持创新性</li>
+          <li style="margin-bottom: 8px;">如何平衡质量风险与成本</li>
+          <li>对AI产品落地的理解</li>
+        </ul>
+
+        <h4 style="margin: 16px 0 10px; font-size: 15px; color: var(--text); font-weight: 600;">
+          有什么权衡与取舍？
+        </h4>
+        <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.75; color: var(--muted);">
+          质量风险与成本问题的全局考虑，提高召回率能尽量避免生产事故及品牌信誉问题，成本的暂时上升有利于避免更大的损失。
+        </p>
+        <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.75; color: var(--muted);">
+          产品的研发推进需要考虑技术现有水平，以及成本等多方面因素，达到现实与目标的折中。
+        </p>
+        <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--muted);">
+          本项目让我认识到，AI 产品经理的核心价值在于将复杂技术转化为可落地的业务价值，并在技术可行性、组织接受度与商业回报之间找到平衡点。
+        </p>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a class="btn" href="project.html">
+          <span class="btn__t">返回项目</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="zh">纯静态页面 · Ubuntu + Nginx 部署</span>
+    </footer>
+  </main>
+
+<script>
+(() => {
+  const fog = document.getElementById("fog-canvas");
+  const drop = document.getElementById("droplet-canvas");
+  if (!fog || !drop) return;
+
+  const fctx = fog.getContext("2d", { alpha: true });
+  const dctx = drop.getContext("2d", { alpha: true });
+
+  let W=0, H=0, DPR=Math.min(2, window.devicePixelRatio || 1);
+
+  [fog, drop].forEach((c, i) => {
+    c.style.position = "fixed";
+    c.style.inset = "0";
+    c.style.pointerEvents = "none";
+    c.style.zIndex = (i===0) ? "0" : "0";
+  });
+
+  document.querySelectorAll(".top, .wrap").forEach(el => {
+    el.style.position = "relative";
+    el.style.zIndex = "1";
+  });
+
+  function resize(){
+    W = Math.floor(window.innerWidth);
+    H = Math.floor(window.innerHeight);
+
+    fog.width = Math.floor(W*DPR);
+    fog.height = Math.floor(H*DPR);
+    fog.style.width = W+"px";
+    fog.style.height = H+"px";
+    fctx.setTransform(DPR,0,0,DPR,0,0);
+
+    drop.width = Math.floor(W*DPR);
+    drop.height = Math.floor(H*DPR);
+    drop.style.width = W+"px";
+    drop.style.height = H+"px";
+    dctx.setTransform(DPR,0,0,DPR,0,0);
+
+    paintFogFull();
+  }
+  Effects.on(window, "resize", resize, { passive:true });
+
+  let grainCanvas = document.createElement("canvas");
+  let gctx = grainCanvas.getContext("2d", { alpha:true });
+
+  function buildGrain(){
+    const s = 260;
+    grainCanvas.width = s;
+    grainCanvas.height = s;
+    gctx.clearRect(0,0,s,s);
+
+    const img = gctx.createImageData(s, s);
+    for(let i=0;i<img.data.length;i+=4){
+      const base = 235 + Math.random()*20;
+      const speck = (Math.random() < 0.08) ? (210 + Math.random()*25) : base;
+
+      img.data[i]   = speck;
+      img.data[i+1] = speck;
+      img.data[i+2] = speck;
+
+      let a = 0;
+      if (Math.random() < 0.72) a = 18 + Math.random()*22;
+      if (Math.random() < 0.05) a = 40 + Math.random()*35;
+      img.data[i+3] = a;
+    }
+    gctx.putImageData(img,0,0);
+  }
+
+  buildGrain();
+
+  let lastMove = performance.now();
+  let targetFog = 1;
+  let fogRebuildRequested = false;
+
+  function paintFogFull(){
+    fctx.clearRect(0,0,W,H);
+
+    fctx.globalCompositeOperation = "source-over";
+    fctx.fillStyle = "rgba(255,255,255,0.86)";
+    fctx.fillRect(0,0,W,H);
+
+    for(let i=0;i<18;i++){
+      const x = Math.random()*W;
+      const y = Math.random()*H;
+      const r = 260 + Math.random()*560;
+      const grad = fctx.createRadialGradient(x,y,0,x,y,r);
+      grad.addColorStop(0, "rgba(255,255,255,0.55)");
+      grad.addColorStop(0.55, "rgba(255,255,255,0.18)");
+      grad.addColorStop(1, "rgba(255,255,255,0)");
+      fctx.fillStyle = grad;
+      fctx.beginPath();
+      fctx.arc(x,y,r,0,Math.PI*2);
+      fctx.fill();
+    }
+
+    fctx.globalAlpha = 0.85;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    const v = fctx.createRadialGradient(W*0.5,H*0.5, Math.min(W,H)*0.2, W*0.5,H*0.5, Math.max(W,H)*0.75);
+    v.addColorStop(0, "rgba(255,255,255,0)");
+    v.addColorStop(1, "rgba(255,255,255,0.18)");
+    fctx.fillStyle = v;
+    fctx.fillRect(0,0,W,H);
+  }
+
+  function wipeFog(x,y){
+    fctx.save();
+    fctx.globalCompositeOperation = "destination-out";
+
+    const rBig = 150;
+    let g1 = fctx.createRadialGradient(x,y,0,x,y,rBig);
+    g1.addColorStop(0, "rgba(0,0,0,0.55)");
+    g1.addColorStop(0.6, "rgba(0,0,0,0.22)");
+    g1.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g1;
+    fctx.beginPath();
+    fctx.arc(x,y,rBig,0,Math.PI*2);
+    fctx.fill();
+
+    const rCore = 70;
+    let g2 = fctx.createRadialGradient(x,y,0,x,y,rCore);
+    g2.addColorStop(0, "rgba(0,0,0,1)");
+    g2.addColorStop(0.55, "rgba(0,0,0,0.98)");
+    g2.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = g2;
+    fctx.beginPath();
+    fctx.arc(x,y,rCore,0,Math.PI*2);
+    fctx.fill();
+
+    fctx.globalAlpha = 0.35;
+    fctx.beginPath();
+    fctx.ellipse(x, y, 120, 36, 0, 0, Math.PI*2);
+    fctx.fill();
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+  }
+
+  function restoreFogStep(dt){
+    const idle = (performance.now() - lastMove);
+    if (idle < 3000) return;
+
+    fctx.save();
+    fctx.globalCompositeOperation = "source-over";
+
+    fctx.fillStyle = "rgba(255,255,255,0.010)";
+    fctx.fillRect(0,0,W,H);
+
+    fctx.globalAlpha = 0.04;
+    const pat = fctx.createPattern(grainCanvas, "repeat");
+    fctx.fillStyle = pat;
+    fctx.fillRect(0,0,W,H);
+    fctx.globalAlpha = 1;
+
+    fctx.restore();
+
+    if (!fogRebuildRequested && idle > 25000){
+      fogRebuildRequested = true;
+      setTimeout(() => {
+        paintFogFull();
+        fogRebuildRequested = false;
+      }, 50);
+    }
+  }
+
+  let droplets = [];
+  function spawnDroplet(x, y){
+    droplets.push({
+      x: x + (Math.random()*26-13),
+      y: y + (Math.random()*26-13),
+      r: 1.8 + Math.random()*3.6,
+      vy: 28 + Math.random()*55,
+      life: 3.5 + Math.random()*4.2,
+      wobble: 0.6 + Math.random()*1.2,
+      t: 0
+    });
+    if (droplets.length > 120) droplets.splice(0, droplets.length - 120);
+  }
+
+  function drawDroplets(dt){
+    dctx.clearRect(0,0,W,H);
+    dctx.save();
+
+    for (let i=0;i<droplets.length;i++){
+      const p = droplets[i];
+      p.t += dt;
+
+      p.x += Math.sin((p.t*3.2) + p.x*0.01) * p.wobble * 0.18;
+      p.y += p.vy * dt;
+
+      const trailLen = 26 + p.r*10 + Math.random()*18;
+      dctx.globalAlpha = Math.max(0, 0.26 - p.t*0.035);
+      dctx.strokeStyle = "rgba(205, 235, 255, 0.95)";
+      dctx.lineWidth = Math.max(1, p.r*0.55);
+
+      dctx.beginPath();
+      dctx.moveTo(p.x, p.y - trailLen);
+      dctx.lineTo(p.x, p.y);
+      dctx.stroke();
+
+      dctx.globalAlpha = Math.max(0, 0.55 - p.t*0.06);
+      dctx.fillStyle = "rgba(240, 252, 255, 0.98)";
+      dctx.beginPath();
+      dctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      dctx.fill();
+
+      dctx.globalAlpha = Math.max(0, 0.22 - p.t*0.05);
+      dctx.fillStyle = "rgba(255,255,255,0.95)";
+      dctx.beginPath();
+      dctx.arc(p.x - p.r*0.35, p.y - p.r*0.35, Math.max(0.6, p.r*0.35), 0, Math.PI*2);
+      dctx.fill();
+    }
+
+    droplets = droplets.filter(p => p.t < p.life && p.y < H + 60);
+    dctx.restore();
+  }
+
+  function onMove(clientX, clientY){
+    lastMove = performance.now();
+    wipeFog(clientX, clientY);
+
+    if (Math.random() < 0.8) spawnDroplet(clientX, clientY);
+  }
+
+  Effects.on(window, "mousemove", (e) => onMove(e.clientX, e.clientY), { passive:true });
+  Effects.on(window, "touchmove", (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    onMove(t.clientX, t.clientY);
+  }, { passive:true });
+
+  let last = performance.now();
+  let animationId = null;
+  
+  function tick(now){
+    const dt = Math.min(0.033, (now-last)/1000);
+    last = now;
+
+    restoreFogStep(dt);
+    drawDroplets(dt);
+
+    animationId = Effects.raf(tick);
+  }
+
+  resize();
+  paintFogFull();
+  animationId = Effects.raf(tick);
+  
+  Effects.addCleanup(() => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    droplets = [];
+    fctx.clearRect(0, 0, W, H);
+    dctx.clearRect(0, 0, W, H);
+  });
+})();
+</script>
+
+</body>
+</html>

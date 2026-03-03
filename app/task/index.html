@@ -10,6 +10,9 @@
 <body>
   <div class="app">
     <aside class="sidebar">
+      <button class="sideToggle" id="btnSideToggle" aria-label="Toggle sidebar">
+  <span></span><span></span><span></span>
+</button>
       <div class="brand">
         <div class="brand__title">STEP BY STEP</div>
         <div class="brand__sub">My simple daily task planner</div>
@@ -17,19 +20,21 @@
 
       <nav class="nav" aria-label="Task views">
         <button class="nav__item is-active" data-view="today">Today</button>
-        <button class="nav__item" data-view="week">Week</button>
         <button class="nav__item" data-view="all">All</button>
         <button class="nav__item" data-view="done">Done</button>
+        <button class="nav__item" data-view="history">History</button>
       </nav>
+<div class="card card--soft">
+  <div class="card__title">Views</div>
 
-      <div class="card card--soft">
-        <div class="card__title">Views</div>
-        <div class="coming-soon">
-          <div class="coming-soon__big">Month / Year</div>
-          <div class="coming-soon__small">Coming soon (v2.0)</div>
-        </div>
-      </div>
+  <div class="seg3" id="segViews" role="tablist" aria-label="Views">
+    <button class="seg3__btn is-active" data-subview="week" role="tab">Week</button>
+    <button class="seg3__btn" data-subview="month" role="tab">Month</button>
+    <button class="seg3__btn" data-subview="year" role="tab">Year</button>
+  </div>
 
+  <div class="hint">Switch to analytics views (no editing here).</div>
+</div>
       <div class="card">
         <div class="card__title">Backup</div>
         <div class="row">
@@ -49,31 +54,40 @@
         </div>
 
         <div class="topbar__right">
-          <input class="input" id="searchInput" placeholder="Search tasks (title / note)..." />
-          <button class="btn btn--ghost" id="btnClearSearch" title="Clear search">Clear</button>
-        </div>
+  <input class="input" id="searchInput" placeholder="Search (title / note / tag)..." />
+  <select class="input" id="sortSelect" title="Sort">
+    <option value="due" selected>Sort: Due date</option>
+    <option value="priority">Sort: Priority</option>
+    <option value="created">Sort: Created</option>
+  </select>
+  <button class="btn btn--ghost" id="btnClearSearch" title="Clear search">Clear</button>
+</div>
       </header>
 
       <section class="composer card">
-        <div class="composer__row">
-          <input class="input input--big" id="titleInput" placeholder="Add a task..." />
-          <input class="input" id="dueInput" type="date" />
-          <button class="btn btn--primary" id="btnAdd">Add</button>
-        </div>
-        <div class="composer__row">
-          <input class="input" id="noteInput" placeholder="Note (optional)..." />
-          <div class="hint">
-            No-due tasks will also show in Today (your choice). If it gets messy, we can add “Fold no-due”.
-          </div>
-        </div>
+       <div class="composer__row">
+  <input class="input input--big" id="titleInput" placeholder="Add a task..." />
+  <input class="input" id="dueInput" type="date" />
+  <select class="input" id="priorityInput" title="Priority">
+    <option value="med" selected>Priority: Med</option>
+    <option value="high">Priority: High</option>
+    <option value="low">Priority: Low</option>
+  </select>
+  <input class="input" id="tagInput" placeholder="Tag (optional)..." />
+  <button class="btn btn--primary" id="btnAdd">Add</button>
+</div>
+<div class="composer__row">
+  <input class="input" id="noteInput" placeholder="Note (optional)..." />
+  <div class="hint">
+    Tip: Enter to add. Tasks are saved locally in your browser.
+  </div>
+</div>
       </section>
 
       <section class="listWrap">
         <div class="listHeader">
           <div class="pill" id="statsPill">0 tasks</div>
-          <div class="listActions">
-            <button class="btn btn--ghost" id="btnHideNoDue">Hide no-due (Today)</button>
-          </div>
+         
         </div>
 
         <ul class="taskList" id="taskList"></ul>

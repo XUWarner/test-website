@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -43,7 +43,7 @@
       <p class="hero__subtitle">
         <span class="en">A clean hub for my projects and learning notes.</span>
         <span class="sep">·</span>
-        <span class="zh">我的项目与学习笔记汇总入口。</span>
+        <span class="zh">我的项目与学习笔记汇总入口（中英双语）。</span>
       </p>
     </section>
 
@@ -51,26 +51,30 @@
       <div class="card__left">
         <h2 class="card__title">About</h2>
         <p class="card__p">
-          硕士背景，正在向产品经理方向发展。相信"好产品源于对业务的深入理解"，关注产品如何在真实场景中创造价值。
-          <br /><br />
-          能够快速进入新行业与场景的学习状态，从业务流程、核心指标与关键变量入手建立认知框架。具备结构化思考能力与快速学习能力。
-          <br /><br />
-          已独立完成个人网站搭建与部署，善于借助 AI 工具进行信息整合、方案推演与快速验证。
-          <br /><br />
-          期望成为以业务理解为根基、以结果为导向的产品经理，在实践中持续沉淀产品判断力。
+          <span class="en">
+            I’m rebuilding my English fluency as working language while learning fast and documenting what I build.
+            This site is a simple map: where I’ve been, what I’m doing, and what’s next.
+          </span>
+          <br />
+          <span class="zh">
+            我正在练习将英语作为工作语言，同时保持高频学习与记录。这个网站是我的“导航地图”：
+            我做过什么、在学什么、下一步要做什么。
+          </span>
         </p>
 
         <div class="mini">
           <div class="mini__item">
             <div class="mini__k">Focus</div>
             <div class="mini__v">
-              产品设计 · AI应用 · 业务理解
+              <span class="en">Web building · Vertical farming · AI tools</span><br>
+              <span class="zh">网站搭建 · 垂直农业 · AI工具</span>
             </div>
           </div>
           <div class="mini__item">
             <div class="mini__k">Style</div>
             <div class="mini__v">
-              结构化思考 · 快速学习 · 持续迭代
+              <span class="en">Simple, structured, continuously improving.</span><br>
+              <span class="zh">简洁、结构化、持续迭代。</span>
             </div>
           </div>
         </div>
@@ -132,4 +136,3 @@
   <script src="fx-optimized.js"></script>
 </body>
 </html>
-
